@@ -22,7 +22,16 @@
 			<div id="content_wrapper">
 				<div id="content_sidebar">
 					<div class="sideblock sideblock-new"><a href="new.php" class="new_button">Новое достижение</a></div>
-					<div class="sideblock sideblock-profile">Diamond00744<br>> профиль<br>> настройки<br>> выйти</div>
+					<div class="sideblock sideblock-profile">
+						<div class="title">Diamond00744</div>
+						<div class="avatar"><img src="storage/avatars/diamond00744.jpg"></div>
+						<ul class="menu">
+							<li><a href="profile.php">Профиль</a></li>
+							<li><a href="settings.php">Настройки</a></li>
+							<li><a href="logout.php">Выйти</a></li>
+						</ul>
+						<div class="clear"></div>
+					</div>
 					<div class="sideblock sideblock-stats">Вы наполучали: сегодня одно, вчера 3, 32 декабря: 5 штук</div>
 				</div>
 				<div id="content_main">
@@ -43,7 +52,7 @@
 		</div>
 	</div>
 	<div class="notification" style="border-color: #0d0;">
-		<div class="icon" style="--box-shadow-color: #0d0;"><img></div>
+		<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg"></div>
 		<div class="title">Получено достижение</div>
 		<div class="text">Делом, наконец, занялся</div>
 		<div class="comment">от tippa44007</div>

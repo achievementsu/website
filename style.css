@@ -12,6 +12,10 @@ a, a:link, a:visited, a:hover, a:active {
 	color: #fff;
 }
 
+.clear {
+	clear: both;
+}
+
 #wrapper {
 	width: 100%;
 }
@@ -107,7 +111,7 @@ a, a:link, a:visited, a:hover, a:active {
 	padding: 5px;
 }
 
-.sideblock-new a {
+.sideblock-new > a {
 	display: block;
 	padding: 10px 0;
 	margin: 4px;
@@ -120,10 +124,33 @@ a, a:link, a:visited, a:hover, a:active {
 	text-shadow: 0 1px 0 #050, 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.sideblock-new a:hover, .sideblock-new a:active {
+.sideblock-new > a:hover, .sideblock-new > a:active {
 	background: #070 linear-gradient(#0b0, #070 10px);
 	border: 1px solid #070;
 	box-shadow: 0 0 2px 2px #050;
+}
+
+.sideblock-profile > .title {
+	padding: 4px 0;
+	text-align: center;
+}
+
+.sideblock-profile > .avatar {
+	float: left;
+	margin: 10px;
+	width: 100px;
+	height: 100px;
+	box-shadow: 0 0 2px 0 #ddd;
+	border-radius: 2px;
+}
+
+.sideblock-profile > ul.menu {
+	margin: 14px 0 0 0;
+	list-style-type: none;
+}
+
+.sideblock-profile > ul.menu > li {
+	margin: 6px 0;
 }
 
 /* --- --- --- Footer part --- --- --- */
@@ -144,8 +171,9 @@ a, a:link, a:visited, a:hover, a:active {
 	bottom: 10px;
 	width: 300px;
 	height: 96px;
-	border-radius: 4px;
 	border: 1px solid #000;
+	box-sizing: border-box;
+	border-radius: 4px;
 	background: #333 linear-gradient(#333, #111);
 	box-shadow: 0 2px 8px 0 #000;
 }
@@ -155,8 +183,9 @@ a, a:link, a:visited, a:hover, a:active {
 	position: absolute;
 	width: 64px;
 	height: 64px;
-	margin-left: 16px;
-	margin-top: 16px;
+	margin-left: 15px;
+	margin-top: 14px;
+	border: 1px solid var(--box-shadow-color);
 	box-shadow: 0 0 4px 0 var(--box-shadow-color);
 }
 
