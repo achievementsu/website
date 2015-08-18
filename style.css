@@ -101,13 +101,13 @@ a, a:link, a:visited, a:hover, a:active {
 	width: 300px;
 }
 
-#content_sidebar .block {
+.sideblock {
 	margin: 6px;
 	background: #222;
 	padding: 5px;
 }
 
-#content a.new_button {
+.sideblock-new a {
 	display: block;
 	padding: 10px 0;
 	margin: 4px;
@@ -120,7 +120,7 @@ a, a:link, a:visited, a:hover, a:active {
 	text-shadow: 0 1px 0 #050, 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-#content a:hover.new_button, #content a:active.new_button {
+.sideblock-new a:hover, .sideblock-new a:active {
 	background: #070 linear-gradient(#0b0, #070 10px);
 	border: 1px solid #070;
 	box-shadow: 0 0 2px 2px #050;
