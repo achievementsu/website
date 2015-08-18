@@ -38,11 +38,12 @@
 					<h1 class="title">Лента обновлений</h1>
 					<div id="feed">
 						<h2>Сегодня</h2>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#555</span> получил два достижения</div>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#575</span> получил достижение <span class="achievement_name">Похититель</span></div>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#1</span> получил достижение <span class="achievement_name">ДуровЛох</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#555</span> получил достижение 7 уровня <span class="achievement_name">Счастливчик</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#575</span> получил достижение 5 уровня <span class="achievement_name">Похититель</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#1</span> получил достижение 10 уровня <span class="achievement_name">ДуровЛох</span></div>
 						<h2>Вчера</h2>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> добавил в друзья <span class="username">ID#441</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> выдал <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#441</span> достижение 3 уровня <span class="achievement_name">За верность</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> подружился с <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#441</span></div>
 					</div>
 				</div>
 			</div>
