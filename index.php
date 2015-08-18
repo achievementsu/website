@@ -49,7 +49,17 @@
 		</div>
 		<div id="footer">
 			<div id="footer_wrapper">
-				Подвал сайта, копирайты (C) 2015 от Даймонда00744<br>Inspired by Steam
+				<a href="http://00744.ru" target="_blank" class="logo"></a>
+				<p>Copyright &copy; 2015 by .00744</p>
+				<p>Все права правы, а лева - левы. Учитывайте это при переходе оживлённых трасс.</p>
+				<nav id="footer_menu">
+					<ul>
+						<li><a href="about.php">О сайте</a></li>
+						<li><a href="terms.php">Правила</a></li>
+						<li><a href="legal-notice.php">Правовые заметки</a></li>
+						<li><a href="contact.php">Обратная связь</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>
