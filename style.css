@@ -129,8 +129,57 @@ a, a:link, a:visited, a:hover, a:active {
 /* --- --- --- Footer part --- --- --- */
 
 #footer {
-	background: #1a1a1a linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 36px) repeat-x;
+	background: #1a1a1a linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 36px);
 	border-top: 1px solid #000;
 	padding: 20px;
 	clear: both;
+}
+
+/* --- --- --- Notification part --- --- --- */
+
+.notification {
+	position: fixed;
+	z-index: 9999999;
+	right: 10px;
+	bottom: 10px;
+	width: 300px;
+	height: 96px;
+	border-radius: 4px;
+	border: 1px solid #000;
+	background: #333 linear-gradient(#333, #111);
+	box-shadow: 0 2px 8px 0 #000;
+}
+
+.notification > .icon {
+	--box-shadow-color: #fff;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	margin-left: 16px;
+	margin-top: 16px;
+	box-shadow: 0 0 4px 0 var(--box-shadow-color);
+}
+
+.notification > .title {
+	color: #fff;
+	position: absolute;
+	margin-left: 94px;
+	margin-top: 22px;
+}
+
+.notification > .text {
+	color: #bbb;
+	font-size: 11px;
+	position: absolute;
+	margin-left: 94px;
+	margin-top: 43px;
+}
+
+.notification > .comment {
+	color: #aaa;
+	font-size: 10px;
+	font-style: italic;
+	position: absolute;
+	margin-left: 94px;
+	margin-top: 64px;
 }

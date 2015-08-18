@@ -42,5 +42,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="notification" style="border-color: #0d0;">
+		<div class="icon" style="--box-shadow-color: #0d0;"><img></div>
+		<div class="title">Получено достижение</div>
+		<div class="text">Начал-таки сайт пилить</div>
+		<div class="comment">от tippa44007</div>
+	</div>
 </body>
 </html>
