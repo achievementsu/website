@@ -2,12 +2,13 @@ body {
 	color: #ddd;
 	background: #333;
 	font-family: "DejaVu Sans", Arial, Tahoma, sans-serif;
-	font-size: 11px;
+	font-size: 12px;
 	margin: 0;
 	padding: 0;
 }
 
-a {
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
 	color: #fff;
 }
 
@@ -59,10 +60,6 @@ a {
 	margin: 0 16px;
 }
 
-#header_menu a {
-	text-decoration: none;
-}
-
 #header_menu a:link, #header_menu a:visited {
 	color: #ddd;
 }
@@ -88,7 +85,7 @@ a {
 
 #content_main {
 	margin: 10px;
-	width: 570px;
+	width: 580px;
 }
 
 #content_main .block {
@@ -99,7 +96,6 @@ a {
 }
 
 #content_sidebar {
-	margin: 10px;
 	float: right;
 	width: 300px;
 }
@@ -109,6 +105,25 @@ a {
 	background: #222;
 	padding: 5px;
 	border-radius: 4px;
+}
+
+#content a.new_button {
+	display: block;
+	padding: 10px 0;
+	margin: 4px;
+	border-radius: 4px;
+	background: #040 linear-gradient(#080, #040 100%);
+	border: 1px solid #040;
+	box-shadow: 0 0 4px 4px #020;
+	font-size: 1.2em;
+	text-align: center;
+	text-shadow: 0 1px 0 #050, 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#content a:hover.new_button, #content a:active.new_button {
+	background: #070 linear-gradient(#0b0, #070 10px);
+	border: 1px solid #070;
+	box-shadow: 0 0 2px 2px #050;
 }
 
 /* --- --- --- Footer part --- --- --- */

@@ -21,7 +21,7 @@
 		<div id="content">
 			<div id="content_wrapper">
 				<div id="content_sidebar">
-					<div class="block">Новое достижение</div>
+					<div class="block"><a href="new.php" class="new_button">Новое достижение</a></div>
 					<div class="block">Diamond00744<br>> профиль<br>> настройки<br>> выйти</div>
 					<div class="block">Вы наполучали: сегодня одно, вчера 3, 32 декабря: 5 штук</div>
 				</div>
