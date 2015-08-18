@@ -35,13 +35,15 @@
 					<div class="sideblock sideblock-stats">Вы наполучали: сегодня одно, вчера 3, 32 декабря: 5 штук</div>
 				</div>
 				<div id="content_main">
-					<h1>Лента новостей</h1>
-					<h2>Сегодня</h2>
-					<div class="block">Хмырь ID#555 получил два достижения</div>
-					<div class="block">Хмырь ID#575 получил достижение "Похититель"</div>
-					<div class="block">Хмырь ID#1 получил достижение "ДуровЛох"</div>
-					<h2>Вчера</h2>
-					<div class="block">ID#440 добавил в друзья ID#441</div>
+					<h1 class="title">Лента обновлений</h1>
+					<div id="feed">
+						<h2>Сегодня</h2>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#555</span> получил два достижения</div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#575</span> получил достижение <span class="achievement_name">Похититель</span></div>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#1</span> получил достижение <span class="achievement_name">ДуровЛох</span></div>
+						<h2>Вчера</h2>
+						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> добавил в друзья <span class="username">ID#441</span></div>
+					</div>
 				</div>
 			</div>
 		</div>
