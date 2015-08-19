@@ -49,12 +49,12 @@
 					<h1 class="title">Лента обновлений</h1>
 					<div id="feed">
 						<h2>Сегодня</h2>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#555</span> получил достижение 7 уровня <span class="achievement_name">Счастливчик</span></div>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#575</span> получил достижение 5 уровня <span class="achievement_name">Похититель</span></div>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Хмырь ID#1</span> получил достижение 10 уровня <span class="achievement_name">ДуровЛох</span></div>
+						<div class="item"><span class="timestamp">10:42</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> получили достижение 7 уровня <span class="achievement_name">Счастливчик</span> от <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span></div>
+						<div class="item"><span class="timestamp">9:29</span> <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span> получил достижение 5 уровня <span class="achievement_name">Зомбикиллер</span> от <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вас</span></div>
+						<div class="item"><span class="timestamp">9:18</span> <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span> получил достижение 10 уровня <span class="achievement_name">ДуровЛох</span></div>
 						<h2>Вчера</h2>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> выдал <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#441</span> достижение 3 уровня <span class="achievement_name">За верность</span></div>
-						<div class="item"><img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#440</span> подружился с <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">ID#441</span></div>
+						<div class="item"><span class="timestamp">23:19</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> получили достижение 8 уровня <span class="achievement_name">За верность</span> от <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
+						<div class="item"><span class="timestamp">16:54</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> подружились с <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
 					</div>
 				</div>
 			</div>

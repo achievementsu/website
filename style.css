@@ -131,6 +131,14 @@ input[type="submit"]:hover {
 	*/
 }
 
+#feed .item > .timestamp {
+	color: #bbb;
+	font-size: 10px;
+	font-style: italic;
+	float: right;
+	margin: 6px;
+}
+
 #feed .item > .avatar {
 	border-radius: 2px;
 	box-shadow: 0 0 1px 0 #fff;
