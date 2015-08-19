@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+п»ї<!DOCTYPE html>
 <html>
 <head>
 <title>Achi Test Service</title>
@@ -11,9 +11,9 @@
 				<div id="header_logo"></div>
 				<nav id="header_menu">
 					<ul>
-						<li><a href="feed.php" class="here">Лента</a></li>
-						<li><a href="friends.php">Друзья</a></li>
-						<li><a href="profile.php">Профиль</a></li>
+						<li><a href="feed.php" class="here">Р›РµРЅС‚Р°</a></li>
+						<li><a href="friends.php">Р”СЂСѓР·СЊСЏ</a></li>
+						<li><a href="profile.php">РџСЂРѕС„РёР»СЊ</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -21,40 +21,40 @@
 		<div id="content">
 			<div id="content_wrapper">
 				<div id="content_sidebar">
-					<div class="sideblock sideblock-new"><a href="new.php" class="new_button">Новое достижение</a></div>
+					<div class="sideblock sideblock-new"><a href="new.php" class="new_button">РќРѕРІРѕРµ РґРѕСЃС‚РёР¶РµРЅРёРµ</a></div>
 					<div class="sideblock sideblock-login">
 						<form id="login-form" name="logon" method="POST">
-							<label for="login-username">Имя пользователя</label><br>
+							<label for="login-username">РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</label><br>
 							<input id="login-username" type="text" tabindex="1" maxlength="50" name="username"></input><br><br>
-							<label for="login-password">Пароль</label><br>
+							<label for="login-password">РџР°СЂРѕР»СЊ</label><br>
 							<input id="login-password" type="password" tabindex="2" maxlength="50" autocomplete="off" name="password"></input><br><br>
-							<input id="login-button" type="submit" tabindex="3" value="Вход"></input>
+							<input id="login-button" type="submit" tabindex="3" value="Р’С…РѕРґ"></input>
 						</form>
-						Восстановление доступа<br>
-						Регистрация
+						Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РґРѕСЃС‚СѓРїР°<br>
+						Р РµРіРёСЃС‚СЂР°С†РёСЏ
 					</div>
 					<div class="sideblock sideblock-profile">
 						<div class="title">Diamond00744</div>
 						<div class="avatar"><img src="storage/avatars/diamond00744.jpg"></div>
 						<ul class="menu">
-							<li><a href="profile.php">Профиль</a></li>
-							<li><a href="settings.php">Настройки</a></li>
-							<li><a href="logout.php">Выйти</a></li>
+							<li><a href="profile.php">РџСЂРѕС„РёР»СЊ</a></li>
+							<li><a href="settings.php">РќР°СЃС‚СЂРѕР№РєРё</a></li>
+							<li><a href="logout.php">Р’С‹Р№С‚Рё</a></li>
 						</ul>
 						<div class="clear"></div>
 					</div>
-					<div class="sideblock sideblock-stats">Вы наполучали: сегодня одно, вчера 3, 32 декабря: 5 штук</div>
+					<div class="sideblock sideblock-stats">Р’С‹ РЅР°РїРѕР»СѓС‡Р°Р»Рё: СЃРµРіРѕРґРЅСЏ РѕРґРЅРѕ, РІС‡РµСЂР° 3, 32 РґРµРєР°Р±СЂСЏ: 5 С€С‚СѓРє</div>
 				</div>
 				<div id="content_main">
-					<h1 class="title">Лента обновлений</h1>
+					<h1 class="title">Р›РµРЅС‚Р° РѕР±РЅРѕРІР»РµРЅРёР№</h1>
 					<div id="feed">
-						<h2>Сегодня</h2>
-						<div class="item"><span class="timestamp">10:42</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> получили достижение 7 уровня <span class="achievement_name">Счастливчик</span> от <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span></div>
-						<div class="item"><span class="timestamp">9:29</span> <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span> получил достижение 5 уровня <span class="achievement_name">Зомбикиллер</span> от <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вас</span></div>
-						<div class="item"><span class="timestamp">9:18</span> <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span> получил достижение 10 уровня <span class="achievement_name">ДуровЛох</span></div>
-						<h2>Вчера</h2>
-						<div class="item"><span class="timestamp">23:19</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> получили достижение 8 уровня <span class="achievement_name">За верность</span> от <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
-						<div class="item"><span class="timestamp">16:54</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Вы</span> подружились с <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
+						<h2>РЎРµРіРѕРґРЅСЏ</h2>
+						<div class="item"><span class="timestamp">10:42</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Р’С‹</span> РїРѕР»СѓС‡РёР»Рё РґРѕСЃС‚РёР¶РµРЅРёРµ 7 СѓСЂРѕРІРЅСЏ <span class="achievement_name">РЎС‡Р°СЃС‚Р»РёРІС‡РёРє</span> РѕС‚ <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span></div>
+						<div class="item"><span class="timestamp">9:29</span> <img src="storage/avatars/lirrick.jpg" class="avatar" width="32" height="32"> <span class="username">Lirrick</span> РїРѕР»СѓС‡РёР» РґРѕСЃС‚РёР¶РµРЅРёРµ 5 СѓСЂРѕРІРЅСЏ <span class="achievement_name">Р—РѕРјР±РёРєРёР»Р»РµСЂ</span> РѕС‚ <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Р’Р°СЃ</span></div>
+						<div class="item"><span class="timestamp">9:18</span> <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span> РїРѕР»СѓС‡РёР» РґРѕСЃС‚РёР¶РµРЅРёРµ 10 СѓСЂРѕРІРЅСЏ <span class="achievement_name">Р”СѓСЂРѕРІР›РѕС…</span></div>
+						<h2>Р’С‡РµСЂР°</h2>
+						<div class="item"><span class="timestamp">23:19</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Р’С‹</span> РїРѕР»СѓС‡РёР»Рё РґРѕСЃС‚РёР¶РµРЅРёРµ 8 СѓСЂРѕРІРЅСЏ <span class="achievement_name">Р—Р° РІРµСЂРЅРѕСЃС‚СЊ</span> РѕС‚ <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
+						<div class="item"><span class="timestamp">16:54</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32" height="32"> <span class="username">Р’С‹</span> РїРѕРґСЂСѓР¶РёР»РёСЃСЊ СЃ <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32" height="32"> <span class="username">tippa44007</span></div>
 					</div>
 				</div>
 			</div>
@@ -63,13 +63,13 @@
 			<div id="footer_wrapper">
 				<a href="http://00744.ru" target="_blank" class="logo"></a>
 				<p>Copyright &copy; 2015 by .00744</p>
-				<p>Все права правы, а лева - левы. Учитывайте это при переходе оживлённых трасс.</p>
+				<p>Р’СЃРµ РїСЂР°РІР° РїСЂР°РІС‹, Р° Р»РµРІР° - Р»РµРІС‹. РЈС‡РёС‚С‹РІР°Р№С‚Рµ СЌС‚Рѕ РїСЂРё РїРµСЂРµС…РѕРґРµ РѕР¶РёРІР»С‘РЅРЅС‹С… С‚СЂР°СЃСЃ.</p>
 				<nav id="footer_menu">
 					<ul>
-						<li><a href="about.php">О сайте</a></li>
-						<li><a href="terms.php">Правила</a></li>
-						<li><a href="legal-notice.php">Правовые заметки</a></li>
-						<li><a href="contact.php">Обратная связь</a></li>
+						<li><a href="about.php">Рћ СЃР°Р№С‚Рµ</a></li>
+						<li><a href="terms.php">РџСЂР°РІРёР»Р°</a></li>
+						<li><a href="legal-notice.php">РџСЂР°РІРѕРІС‹Рµ Р·Р°РјРµС‚РєРё</a></li>
+						<li><a href="contact.php">РћР±СЂР°С‚РЅР°СЏ СЃРІСЏР·СЊ</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -77,9 +77,9 @@
 	</div>
 	<div class="notification" style="border-color: #0d0;">
 		<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg"></div>
-		<div class="title">Получено достижение</div>
-		<div class="text">Делом, наконец, занялся</div>
-		<div class="comment">от tippa44007</div>
+		<div class="title">РџРѕР»СѓС‡РµРЅРѕ РґРѕСЃС‚РёР¶РµРЅРёРµ</div>
+		<div class="text">Р”РµР»РѕРј, РЅР°РєРѕРЅРµС†, Р·Р°РЅСЏР»СЃСЏ</div>
+		<div class="comment">РѕС‚ tippa44007</div>
 	</div>
 </body>
 </html>

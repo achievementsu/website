@@ -97,7 +97,7 @@ input[type="submit"]:hover {
 /* --- --- --- Content part --- --- --- */
 
 #content {
-	
+
 }
 
 #content_main {
@@ -150,14 +150,14 @@ input[type="submit"]:hover {
 }
 
 #feed .item > .achievement_name::before {
-	content: "«";
+	content: "Â«";
 }
 #feed .item > .achievement_name {
 	color: #fff;
 	font-style: italic;
 }
 #feed .item > .achievement_name::after {
-	content: "»";
+	content: "Â»";
 }
 
 #content_sidebar {
