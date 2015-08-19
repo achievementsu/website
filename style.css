@@ -171,6 +171,13 @@ input[type="submit"]:hover {
 	padding: 5px;
 }
 
+.sideblock > .title {
+	padding: 4px 0;
+	text-align: center;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
 .sideblock-new > a {
 	display: block;
 	padding: 10px 0;
@@ -190,13 +197,8 @@ input[type="submit"]:hover {
 	box-shadow: 0 0 2px 2px #050;
 }
 
-#login-form {
-	margin: 14px;
-}
-
-.sideblock-profile > .title {
-	padding: 4px 0;
-	text-align: center;
+.sideblock-login {
+	padding: 14px;
 }
 
 .sideblock-profile > .avatar {
@@ -215,6 +217,44 @@ input[type="submit"]:hover {
 
 .sideblock-profile > ul.menu > li {
 	margin: 6px 0;
+}
+
+.sideblock-profile > .last {
+	padding: 8px;
+}
+
+.sideblock-profile > .last > .achievement {
+	background: transparent linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+	margin: 4px;
+	padding: 4px;
+	border-radius: 2px;
+	border: 1px solid #111;
+	box-shadow: 0 1px 2px 0 #000;
+}
+
+.sideblock-profile > .last > .achievement > .icon {
+	--box-shadow-color: #fff;
+	float: left;
+	width: 32px;
+	height: 32px;
+	margin-right: 6px;
+	border-radius: 2px;
+	border: 1px solid var(--box-shadow-color);
+	box-shadow: 0 0 2px 0 var(--box-shadow-color);
+}
+
+.sideblock-profile > .last > .achievement > .title {
+	color: #ddd;
+	font-size: 0.9em;
+	margin-top: 10px;
+	text-shadow: 0 1px 1px #000;
+}
+
+.sideblock-profile > .last > .achievement > .date {
+	float: right;
+	color: #bbb;
+	font-size: 10px;
+	font-style: italic;
 }
 
 /* --- --- --- Footer part --- --- --- */
