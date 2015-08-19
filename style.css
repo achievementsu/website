@@ -15,6 +15,13 @@ a:active {
 	text-decoration: none;
 }
 
+hr {
+	margin: 10px 0;
+	height: 1px;
+	background: rgba(200, 200, 200, 0.5);
+	border: 0;
+}
+
 input,
 textarea,
 select {
@@ -129,7 +136,7 @@ input[type="submit"]:hover {
 	text-align: center;
 }
 
-#feed .item {
+#content-main-feed .item {
 	margin: 6px;
 	padding: 5px;
 	border-radius: 4px;
@@ -141,31 +148,31 @@ input[type="submit"]:hover {
 	*/
 }
 
-#feed .item > .timestamp {
+#content-main-feed .item > .timestamp {
 	color: #bbb;
 	font-size: 10px;
 	font-style: italic;
 	float: right;
 }
 
-#feed .item > .avatar {
+#content-main-feed .item > .avatar {
 	border-radius: 2px;
 	box-shadow: 0 0 1px 0 #fff;
 }
 
-#feed .item > .username {
+#content-main-feed .item > .username {
 	color: #fff;
 	font-weight: bold;
 }
 
-#feed .item > .achievement-name::before {
+#content-main-feed .item > .achievement-name::before {
 	content: "«";
 }
-#feed .item > .achievement-name {
+#content-main-feed .item > .achievement-name {
 	color: #fff;
 	font-style: italic;
 }
-#feed .item > .achievement-name::after {
+#content-main-feed .item > .achievement-name::after {
 	content: "»";
 }
 
