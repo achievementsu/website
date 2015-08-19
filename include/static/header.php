@@ -1,13 +1,4 @@
-﻿<?php
-	function header_link_backlight($link) {
-		global $current_page;
-		if ($link == $current_page) {
-			echo 'class="here"';
-		}
-	}
-?>
-
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -21,9 +12,9 @@
 				<div id="header-logo"></div>
 				<nav id="header-menu">
 					<ul>
-						<li><a href="feed.php" <?php header_link_backlight('feed'); ?>>Лента</a></li>
-						<li><a href="friends.php" <?php header_link_backlight('friends'); ?>>Друзья</a></li>
-						<li><a href="profile.php" <?php header_link_backlight('profile'); ?>>Профиль</a></li>
+						<li><a href="feed.php"<?php header_link_backlight('feed'); ?>>Лента</a></li>
+						<li><a href="friends.php"<?php header_link_backlight('friends'); ?>>Друзья</a></li>
+						<li><a href="profile.php"<?php header_link_backlight('profile'); ?>>Профиль</a></li>
 					</ul>
 				</nav>
 			</div>
