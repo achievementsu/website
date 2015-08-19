@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>Achi Test Service</title>
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<div id="header_wrapper">
-				<div id="header_logo"></div>
-				<nav id="header_menu">
+			<div id="header-wrapper">
+				<div id="header-logo"></div>
+				<nav id="header-menu">
 					<ul>
 						<li><a href="feed.php" class="here">Лента</a></li>
 						<li><a href="friends.php">Друзья</a></li>
@@ -20,10 +20,10 @@
 			</div>
 		</div>
 		<div id="content">
-			<div id="content_wrapper">
-				<div id="content_sidebar">
+			<div id="content-wrapper">
+				<div id="content-sidebar">
 					<div class="sideblock sideblock-new">
-						<a href="new.php" class="new_button">Новое достижение</a>
+						<a href="new.php" class="new-button">Новое достижение</a>
 					</div>
 					<div class="sideblock sideblock-login">
 						<form id="login-form" name="logon" method="POST">
@@ -41,7 +41,7 @@
 							Diamond00744
 						</div>
 						<div class="avatar">
-							<div class="level">9</div>
+							<div class="level">99</div>
 							<img src="storage/avatars/diamond00744.jpg">
 						</div>
 						<ul class="menu">
@@ -75,26 +75,41 @@
 						</div>
 					</div>
 				</div>
-				<div id="content_main">
-					<h1 class="title">Лента обновлений</h1>
+				<div id="content-main">
+					<h1>Лента обновлений</h1>
 					<div id="feed">
 						<h2>Сегодня</h2>
-						<div class="item"><span class="timestamp">10:42</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> получили достижение 7 уровня <span class="achievement_name">Счастливчик</span> от <img src="storage/avatars/lirrick.jpg" class="avatar" width="32px" height="32px"> <span class="username">Lirrick</span></div>
-						<div class="item"><span class="timestamp">9:29</span> <img src="storage/avatars/lirrick.jpg" class="avatar" width="32px" height="32px"> <span class="username">Lirrick</span> получил достижение 5 уровня <span class="achievement_name">Зомбикиллер</span> от <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вас</span></div>
-						<div class="item"><span class="timestamp">9:18</span> <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span> получил достижение 10 уровня <span class="achievement_name">ДуровЛох</span></div>
+						<div class="item">
+							<span class="timestamp">10:42</span>
+							<img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> получили достижение 7 уровня <span class="achievement-name">Счастливчик</span> от <img src="storage/avatars/lirrick.jpg" class="avatar" width="32px" height="32px"> <span class="username">Lirrick</span>
+						</div>
+						<div class="item">
+							<span class="timestamp">9:29</span>
+							<img src="storage/avatars/lirrick.jpg" class="avatar" width="32px" height="32px"> <span class="username">Lirrick</span> получил достижение 5 уровня <span class="achievement-name">Зомбикиллер</span> от <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вас</span>
+						</div>
+						<div class="item">
+							<span class="timestamp">9:18</span>
+							<img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span> получил достижение 10 уровня <span class="achievement-name">ДуровЛох</span>
+						</div>
 						<h2>Вчера</h2>
-						<div class="item"><span class="timestamp">23:19</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> получили достижение 8 уровня <span class="achievement_name">За верность</span> от <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span></div>
-						<div class="item"><span class="timestamp">16:54</span> <img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> подружились с <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span></div>
+						<div class="item">
+							<span class="timestamp">23:19</span>
+							<img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> получили достижение 8 уровня <span class="achievement-name">За верность</span> от <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span>
+						</div>
+						<div class="item">
+							<span class="timestamp">16:54</span>
+							<img src="storage/avatars/diamond00744.jpg" class="avatar" width="32px" height="32px"> <span class="username">Вы</span> подружились с <img src="storage/avatars/tippa44007.jpg" class="avatar" width="32px" height="32px"> <span class="username">tippa44007</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="footer">
-			<div id="footer_wrapper">
+			<div id="footer-wrapper">
 				<a href="http://00744.ru" target="_blank" class="logo"></a>
 				<p>Copyright &copy; 2015 by .00744</p>
 				<p>Все права правы, а лева - левы. Учитывайте это при переходе оживлённых трасс.</p>
-				<nav id="footer_menu">
+				<nav id="footer-menu">
 					<ul>
 						<li><a href="about.php">О сайте</a></li>
 						<li><a href="terms.php">Правила</a></li>
@@ -105,7 +120,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="notification" style="border-color: #0d0;">
+	<div class="popup-achievement" style="border-color: #0d0;">
 		<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg"></div>
 		<div class="title">Получено достижение</div>
 		<div class="text">Делом, наконец, занялся</div>

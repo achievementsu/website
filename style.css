@@ -1,18 +1,23 @@
 body {
-	color: #ddd;
-	background: #333 url("resources/images/background.jpg") repeat fixed 50% 50%;
-	font-family: "DejaVu Sans", Arial, Tahoma, sans-serif;
-	font-size: 12px;
 	margin: 0;
 	padding: 0;
+	color: #ddd;
+	background: #333 url("resources/images/background.jpg") repeat fixed;
+	font: 12px "DejaVu Sans", Arial, Tahoma, sans-serif;
 }
 
-a, a:link, a:visited, a:hover, a:active {
-	text-decoration: none;
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
 	color: #fff;
+	text-decoration: none;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
 	padding: 4px;
 	color: #ddd;
 	background: #222;
@@ -21,8 +26,8 @@ input, textarea, select {
 }
 
 input[type="submit"] {
-	background-image: linear-gradient(#444 0, #222 10px);
 	padding: 2px 16px;
+	background: transparent linear-gradient(#444 0, #222 10px);
 }
 
 input[type="submit"]:hover {
@@ -37,11 +42,6 @@ input[type="submit"]:hover {
 	width: 100%;
 }
 
-#header_wrapper, #content_wrapper, #footer_wrapper {
-	width: 900px;
-	margin: 0 auto;
-}
-
 /* --- --- --- Header part --- --- --- */
 
 #header {
@@ -49,48 +49,51 @@ input[type="submit"]:hover {
 	box-shadow: 0 0 2px 0 #aaa;
 }
 
-#header_wrapper {
+#header-wrapper {
+	margin: 0 auto;
+	width: 900px;
 	height: 160px;
 }
 
-#header_logo {
+#header-logo {
 	opacity: 0.5;
 	position: absolute;
-	margin-left: 200px;
-	margin-top: 20px;
+	margin: 20px 0 0 200px;
 	width: 500px;
 	height: 84px;
 	background: url("resources/images/logo.png");
 }
 
-#header_menu {
+#header-menu {
 	position: absolute;
-	margin-top: 120px;
+	margin: 120px 0 0;
 	width: 900px;
 }
 
-#header_menu ul {
+#header-menu ul {
+	margin: 0 auto;
+	padding: 0;
 	font-size: 22px;
 	text-align: center;
 	text-transform: uppercase;
-	margin: 0 auto;
-	padding: 0;
 }
 
-#header_menu li {
-	display: inline-block;
+#header-menu li {
+	display: inline;
 	margin: 0 16px;
 }
 
-#header_menu a:link, #header_menu a:visited {
+#header-menu a:link,
+#header-menu a:visited {
 	color: #ddd;
 }
 
-#header_menu a:hover, #header_menu a:active {
+#header-menu a:hover,
+#header-menu a:active {
 	color: #fff;
 }
 
-#header_menu a.here {
+#header-menu a.here {
 	color: #fff;
 	text-shadow: 0 0 3px #fff;
 }
@@ -101,23 +104,29 @@ input[type="submit"]:hover {
 
 }
 
-#content_main {
+#content-wrapper {
+	margin: 0 auto;
+	width: 900px;
+}
+
+#content-main {
 	margin: 10px;
 	width: 580px;
 }
 
-#content_main h1.title {
-	background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
-	text-align: center;
-	font-size: 1.6em;
-	font-weight: normal;
+#content-main h1 {
 	margin: 0;
 	padding: 0;
+	background: transparent linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+	font-size: 1.6em;
+	font-weight: normal;
+	text-align: center;
 }
 
-#feed h2 {
+#content-main h2 {
 	font-size: 1.2em;
 	font-weight: normal;
+	text-align: center;
 }
 
 #feed .item {
@@ -149,18 +158,18 @@ input[type="submit"]:hover {
 	font-weight: bold;
 }
 
-#feed .item > .achievement_name::before {
+#feed .item > .achievement-name::before {
 	content: "«";
 }
-#feed .item > .achievement_name {
+#feed .item > .achievement-name {
 	color: #fff;
 	font-style: italic;
 }
-#feed .item > .achievement_name::after {
+#feed .item > .achievement-name::after {
 	content: "»";
 }
 
-#content_sidebar {
+#content-sidebar {
 	float: right;
 	width: 300px;
 }
@@ -191,7 +200,8 @@ input[type="submit"]:hover {
 	text-shadow: 0 1px 0 #050, 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.sideblock-new > a:hover, .sideblock-new > a:active {
+.sideblock-new > a:hover,
+.sideblock-new > a:active {
 	background: #070 linear-gradient(#0b0, #070 10px);
 	border: 1px solid #070;
 	box-shadow: 0 0 2px 2px #050;
@@ -228,12 +238,12 @@ input[type="submit"]:hover {
 	box-shadow: 0 0 2px 0 #33cc33;
 }
 
-.sideblock-profile > ul.menu {
+.sideblock-profile > .menu {
 	margin: 14px 0 0 0;
 	list-style-type: none;
 }
 
-.sideblock-profile > ul.menu > li {
+.sideblock-profile > .menu > li {
 	margin: 6px 0;
 }
 
@@ -278,7 +288,6 @@ input[type="submit"]:hover {
 /* --- --- --- Footer part --- --- --- */
 
 #footer {
-	background: #1a1a1a linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 36px);
 	background: rgba(0, 0, 0, 0.5) linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 36px);
 	box-shadow: 0 0 2px 0 #000;
 	padding: 20px;
@@ -286,7 +295,12 @@ input[type="submit"]:hover {
 	font-size: 0.9em;
 }
 
-#footer a.logo {
+#footer-wrapper {
+	margin: 0 auto;
+	width: 900px;
+}
+
+#footer .logo {
 	display: block;
 	margin: 0 auto;
 	width: 110px;
@@ -300,13 +314,13 @@ input[type="submit"]:hover {
 	text-align: center;
 }
 
-#footer_menu ul {
+#footer-menu ul {
 	margin: 12px auto 0;
 	text-align: center;
 	padding: 0;
 }
 
-#footer_menu li {
+#footer-menu li {
 	display: inline-block;
 	margin: 0 10px;
 	font-variant: small-caps;
@@ -314,7 +328,7 @@ input[type="submit"]:hover {
 
 /* --- --- --- Notification part --- --- --- */
 
-.notification {
+.popup-achievement {
 	position: fixed;
 	z-index: 9999999;
 	right: 10px;
@@ -329,7 +343,7 @@ input[type="submit"]:hover {
 	box-shadow: 0 2px 8px 0 #000;
 }
 
-.notification > .icon {
+.popup-achievement > .icon {
 	--box-shadow-color: #fff;
 	position: absolute;
 	width: 64px;
@@ -340,21 +354,21 @@ input[type="submit"]:hover {
 	box-shadow: 0 0 4px 0 var(--box-shadow-color);
 }
 
-.notification > .title {
+.popup-achievement > .title {
 	color: #fff;
 	position: absolute;
 	margin-left: 94px;
 	margin-top: 18px;
 }
 
-.notification > .text {
+.popup-achievement > .text {
 	color: #bbb;
 	position: absolute;
 	margin-left: 94px;
 	margin-top: 38px;
 }
 
-.notification > .comment {
+.popup-achievement > .comment {
 	color: #aaa;
 	font-size: 0.9em;
 	font-style: italic;
