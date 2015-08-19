@@ -41,6 +41,7 @@
 							Diamond00744
 						</div>
 						<div class="avatar">
+							<div class="level">9</div>
 							<img src="storage/avatars/diamond00744.jpg">
 						</div>
 						<ul class="menu">

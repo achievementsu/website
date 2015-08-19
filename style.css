@@ -54,6 +54,7 @@ input[type="submit"]:hover {
 }
 
 #header_logo {
+	opacity: 0.5;
 	position: absolute;
 	margin-left: 200px;
 	margin-top: 20px;
@@ -136,7 +137,6 @@ input[type="submit"]:hover {
 	font-size: 10px;
 	font-style: italic;
 	float: right;
-	margin: 6px;
 }
 
 #feed .item > .avatar {
@@ -208,6 +208,24 @@ input[type="submit"]:hover {
 	height: 100px;
 	box-shadow: 0 0 2px 0 #ddd;
 	border-radius: 2px;
+}
+
+.sideblock-profile > .avatar > .level {
+	position: absolute;
+	margin-top: 78px;
+	margin-left: 78px;
+	width: 26px;
+	height: 26px;
+	padding: 4px;
+	box-sizing: padding-box;
+	color: #99ee99;
+	font-size: 1.1em;
+	font-weight: bold;
+	text-shadow: 0 0 2px #33cc33;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.75) linear-gradient(rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0));
+	border-radius: 13px;
+	box-shadow: 0 0 2px 0 #33cc33;
 }
 
 .sideblock-profile > ul.menu {
@@ -303,9 +321,10 @@ input[type="submit"]:hover {
 	bottom: 10px;
 	width: 300px;
 	height: 96px;
-	border: 1px solid #000;
 	box-sizing: border-box;
+	font-size: 11px;
 	border-radius: 4px;
+	border: 1px solid #000;
 	background: #333 linear-gradient(#333, #111);
 	box-shadow: 0 2px 8px 0 #000;
 }
@@ -325,22 +344,21 @@ input[type="submit"]:hover {
 	color: #fff;
 	position: absolute;
 	margin-left: 94px;
-	margin-top: 22px;
+	margin-top: 18px;
 }
 
 .notification > .text {
 	color: #bbb;
-	font-size: 11px;
 	position: absolute;
 	margin-left: 94px;
-	margin-top: 43px;
+	margin-top: 38px;
 }
 
 .notification > .comment {
 	color: #aaa;
-	font-size: 10px;
+	font-size: 0.9em;
 	font-style: italic;
 	position: absolute;
 	margin-left: 94px;
-	margin-top: 64px;
+	margin-top: 60px;
 }
