@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #ddd;
-	background: #333 url("resources/images/background.jpg") repeat fixed;
+	background: #333;
 	font: 12px "DejaVu Sans", Arial, Tahoma, sans-serif;
 }
 
@@ -45,7 +45,15 @@ input[type="submit"]:hover {
 	clear: both;
 }
 
+.unfocused {
+	-webkit-filter: blur(4px) grayscale(100%) opacity(50%);
+	filter: blur(4px) grayscale(100%) opacity(50%);
+	transition-duration: .3s;
+	transition-property: filter -webkit-filter;
+}
+
 #wrapper {
+	background: #333 url("resources/images/background.jpg") repeat fixed;
 	width: 100%;
 }
 
