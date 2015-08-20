@@ -35,19 +35,19 @@
 		<div class="last">
 			<div class="achievement" style="border-color: #0d0;">
 				<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="label">сегодня</div>
+				<div class="note">сегодня</div>
 				<div class="title">Делом, наконец, занялся</div>
 				<div class="clear"></div>
 			</div>
 			<div class="achievement" style="border-color: #d00;">
 				<div class="icon" style="--box-shadow-color: #d00;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="label">вчера</div>
+				<div class="note">вчера</div>
 				<div class="title">Достижение 2</div>
 				<div class="clear"></div>
 			</div>
 			<div class="achievement" style="border-color: #ed0;">
 				<div class="icon" style="--box-shadow-color: #ed0;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="label">15 сентября</div>
+				<div class="note">15 сентября</div>
 				<div class="title">Достижение 1</div>
 				<div class="clear"></div>
 			</div>

@@ -167,7 +167,7 @@ h2 {
 	text-shadow: 0 1px 2px #000;
 }
 
-#content-main .item {
+.event {
 	margin: 6px;
 	padding: 5px;
 	border-radius: 4px;
@@ -179,7 +179,7 @@ h2 {
 	*/
 }
 
-.label {
+.note {
 	color: #bbb;
 	font-size: 10px;
 	font-style: italic;

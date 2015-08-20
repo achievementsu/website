@@ -8,7 +8,7 @@
 <h1>Список друзей / результаты поиска</h1>
 <div id="content-main-friends">
 	<h2>Добавить друга</h2>
-	<div class="item">
+	<div>
 		<form id="add-friend">
 			<input type="textarea">
 			<input type="submit" value="Поиск">
