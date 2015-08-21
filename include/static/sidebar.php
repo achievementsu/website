@@ -1,6 +1,6 @@
 <div id="content-sidebar">
 	<div class="sideblock sideblock-new">
-		<a href="new.php" class="new-button">Новое достижение</a>
+		<a href="add.php" class="new-button">Новое достижение</a>
 	</div>
 	<div class="sideblock sideblock-login">
 		<form id="login-form" name="logon" method="POST">
