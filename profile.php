@@ -5,11 +5,18 @@
 	require_once 'include/static/header.php';
 ?>
 
-<h1>Diamond00744</h1>
-<h2>Профиль</h2>
+<h1>Профиль Diamond00744</h1>
+<h2>Информация</h2>
 <div class="section">
-	
+
 </div>
-<h2>Достижения</h2>
+<h2>Общая статистика</h2>
+<div class="section">
+
+</div>
+<h2>Последние достижения</h2>
+<div class="section">
+
+</div>
 
 <?php require_once 'include/static/footer.php'; ?>
