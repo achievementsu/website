@@ -23,3 +23,6 @@
 			<div id="content-wrapper">
 				<?php require 'sidebar.php'; ?>
 				<div id="content-main">
+					<div id="error-box" class="section">
+						Ошибка 451. Данная страница запрещена к просмотру по законам РФ.
+					</div>

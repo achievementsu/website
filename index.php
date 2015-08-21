@@ -6,6 +6,8 @@
 ?>
 
 <h1>Добро пожаловать!</h1>
-<p><strong>Achievement.su</strong> - это сайт, где вы можете хранить свои достижения, а также вручать достижения друзьям.</p>
+<div class="section">
+	<p><strong>Achievement.su</strong> - это сайт, где вы можете хранить свои достижения, а также вручать достижения друзьям.</p>
+</div>
 
 <?php require_once 'include/static/footer.php'; ?>
