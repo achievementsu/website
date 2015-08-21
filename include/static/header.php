@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $title; ?> - Achievement.su</title>
+	<title><?php echo $title; ?> на Achievement.su</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>

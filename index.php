@@ -1,5 +1,5 @@
 <?php
-	$title = 'Добро пожаловать!';
+	$title = 'Добро пожаловать';
   $current_page = 'index';
 	require_once 'include/functions.php';
 	require_once 'include/static/header.php';
