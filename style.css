@@ -56,12 +56,12 @@ select:disabled {
 
 input[type="submit"] {
 	padding: 2px 16px;
-	background-color: #444;
+	background-color: #222;
 	background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, 0) 10px);
 }
 
 input[type="submit"]:hover, input[type="submit"]:focus {
-	background-color: #666;
+	background-color: #333;
 }
 
 .clear {
@@ -186,7 +186,7 @@ h2 {
 }
 
 .event {
-	margin: 6px;
+	margin: 6px 0;
 	padding: 5px;
 	border-radius: 4px;
 	background-image: linear-gradient(rgb(96, 96, 96) 0, rgba(96, 96, 96, 0.5) 6px);
@@ -236,6 +236,7 @@ h2 {
 	margin: 4px 0;
 	padding: 10px;
 	height: 100px;
+	border-radius: 4px;
 	background: transparent linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05) 25px);
 }
 
@@ -309,6 +310,7 @@ h2 {
 
 .sideblock {
 	margin-bottom: 10px;
+	border-radius: 4px;
 	background: rgba(0, 0, 0, 0.33);
 	padding: 5px;
 }
