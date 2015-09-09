@@ -38,10 +38,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="center-buttons">
-		<div class="center-button">
-			<a href="achievements.php?id=diamond00744">Все достижения</a>
+	<div class="achievement-full">
+		<div class="info">
+			<div class="name">И таких всего на этой странице пять</div>
 		</div>
+	</div>
+	<div class="center-buttons">
+		<a href="achievements.php?id=diamond00744" class="center-button">Все достижения</a>
 	</div>
 </div>
 
