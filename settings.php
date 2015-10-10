@@ -19,8 +19,8 @@
 <div class="section info-box info-white-box">
 	Внимание! 25 сентября вечерком сайт будет закрыт на внеплановую техобслужку. Не поймите нас неправильно.
 </div>
+<h1>Настройки</h1>
 <form id="settings" class="settings">
-	<h1>Настройки</h1>
 	<h2>Учётная запись</h2>
 	<div class="section">
 		<div class="setting">
@@ -67,20 +67,35 @@
 	</div>
 	<h2>Доступ и конфиденциальность</h2>
 	<div class="section">
+		<div class="note">
+			Вы можете выбрать, какой системы Вы хотите придерживаться.
+			<ul>
+				<li>
+					Система личного дневника предполагает, что Ваши достижения не будут видны никому кроме Вас.
+				</li>
+				<li>
+					Система друзей предполагает доступ к Вашим достижениям только тем людям, которые добавили Вас и которых вместе с этим добавили Вы.
+				</li>
+				<li>
+					Система подписчиков предполагает, что любой может просматривать Ваши достижения, а также подписываться на Вас для того, чтобы видеть Ваши достижения в своей ленте обновлений.
+				</li>
+			</ul>
+			Просьба учитывать, что подписка на человека равна отправке заявки в друзья, поэтому если Вы подписываетесь на человека, то Вы потенциально открываете ему доступ к своим достижениям.
+		</div>
 		<fieldset class="setting">
 			<legend class="setting-label">Мои достижения могут видеть</legend>
 			<div class="setting-control">
 				<label>
-					<input id="setting-access-all" type="radio" checked name="user[access]" value="all">
-					все
+					<input id="setting-access-me" type="radio" name="user[access]" value="me">
+					никто, лишь только я (система личного дневника)
 				</label>
 				<label>
 					<input id="setting-access-friends" type="radio" name="user[access]" value="friends">
-					только друзья
+					только избранные (система друзей)
 				</label>
 				<label>
-					<input id="setting-access-me" type="radio" name="user[access]" value="me">
-					никто (только я)
+					<input id="setting-access-all" type="radio" checked name="user[access]" value="all">
+					все (система подписчиков)
 				</label>
 			</div>
 		</fieldset>
