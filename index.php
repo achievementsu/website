@@ -1,8 +1,8 @@
 <?php
-	$title = 'Добро пожаловать';
-  $current_page = 'index';
 	require_once 'include/functions.php';
-	Markup::pagestart();
+	$title = 'Добро пожаловать';
+	$current_page = 'index';
+	Markup::pageStart();
 ?>
 
 <h1>Добро пожаловать!</h1>
@@ -11,5 +11,5 @@
 </div>
 
 <?php
-	Markup::pageend();
+	Markup::pageEnd();
 ?>

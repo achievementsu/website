@@ -1,9 +1,10 @@
 <?php
 
+/* Класс, отвечающий за общую разметку страниц */
 class Markup
 {
 	/* Функция подсветки ссылки активной страницы в шапке */
-	private function header_link_backlight($link) {
+	private static function headerLinkBacklight($link) {
 		global $current_page;
 		if ($link == $current_page) {
 			return ' class="here"';
@@ -14,12 +15,12 @@ class Markup
 	}
 
 	/* Функция вставки шапки сайта */
-	public function pagestart() {
+	public static function pageStart() {
 		require_once '/../static/header.php';
 	}
 
 	/* Функция вставки боковой панели */
-	public function pageend() {
+	public static function pageEnd() {
 		require_once '/../static/footer.php';
 	}
 }

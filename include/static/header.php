@@ -12,9 +12,9 @@
 				<div id="header-logo"></div>
 				<nav id="header-menu">
 					<ul>
-						<li><a href="feed.php"<?php Markup::header_link_backlight('feed'); ?>>Лента</a></li>
-						<li><a href="friends.php"<?php Markup::header_link_backlight('friends'); ?>>Друзья</a></li>
-						<li><a href="profile.php"<?php Markup::header_link_backlight('profile'); ?>>Diamond00744</a></li>
+						<li><a href="feed.php"<?php Markup::headerLinkBacklight('feed'); ?>>Лента</a></li>
+						<li><a href="friends.php"<?php Markup::headerLinkBacklight('friends'); ?>>Друзья</a></li>
+						<li><a href="profile.php"<?php Markup::headerLinkBacklight('profile'); ?>>Diamond00744</a></li>
 					</ul>
 				</nav>
 			</div>
