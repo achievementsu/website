@@ -41,30 +41,30 @@ class User
 	 * @return bool Регистрация успешна или нет
 	 */
 	public static function register($email, $password) {
-		global $db, $listErrors;
+		global $db, $listMessages;
 
 		if (strlen($email) > 50 || !preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)) {
-			$listErrors[] = array(
+			$listMessages[] = array(
 				'type' => 'error',
 				'description' => 'Пожалуйста, введите корректный E-mail.'
 			);
 			return false;
 		}
 		if (strlen($password) < 6) {
-			$listErrors[] = array(
+			$listMessages[] = array(
 				'type' => 'error',
 				'description' => 'Пароль должен содержать как минимум 6 символов.'
 			);
 			return false;
 		}
 
-		$data = $db->query("SELECT username, email FROM achi_users WHERE email = $email");
+		$data = $db->query('SELECT * FROM achi_users WHERE email = "' . $email . '"');
 		$i = 0;
 		while($data->fetch_assoc()) {
 			$i++;
 		}
 		if ($i > 0) {
-			$listErrors[] = array(
+			$listMessages[] = array(
 				'type' => 'error',
 				'description' => 'Данный почтовый ящик уже занят. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
 			);
@@ -74,6 +74,10 @@ class User
 		$password = password_hash($password, PASSWORD_DEFAULT);
 		$query = "INSERT INTO achi_users (username, password, email, registration_time) VALUES('$username', '$password', '$email', '" . date('Y.m.d H:i:s') . "')";
 		if ($db->query($query)) {
+			$listMessages[] = array(
+				'type' => 'success',
+				'description' => 'Поздравляем с успешной регистрацией. Добро пожаловать на Achievement.su!'
+			);
 			return true;
 		}
 		return false;
