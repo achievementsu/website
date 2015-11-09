@@ -12,7 +12,7 @@ class Login
 
 		global $db;
 		if (($_COOKIE['id']) && ($_COOKIE['password'])) {
-			$query = "SELECT password FROM achi_users WHERE id=" . $_COOKIE['id'];
+			$query = 'SELECT password FROM achi_users WHERE id=' . $_COOKIE['id'];
 			$data = $db->query($query)->fetch_assoc();
 
 			if (($data) && ($_COOKIE['password'] == $data['password']))

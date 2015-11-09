@@ -18,7 +18,7 @@ class User
 	public function __construct($id) {
 		global $db;
 
-		$query = "SELECT * FROM achi_users WHERE id=$id";
+		$query = 'SELECT * FROM achi_users WHERE id=' . $id;
 		if ($data = $db->query($query)->fetch_assoc()) {
 			$id                = $data['id'];
 			$username          = $data['username'];
@@ -30,7 +30,6 @@ class User
 			$timezone          = $data['timezone'];
 			$birthday          = $data['birthday'];
 			$description       = $data['description'];
-			$data->free();
 		}
 	}
 
@@ -72,7 +71,7 @@ class User
 		}
 
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$query = "INSERT INTO achi_users (username, password, email, registration_time) VALUES('$username', '$password', '$email', '" . date('Y.m.d H:i:s') . "')";
+		$query = 'INSERT INTO achi_users (email, password, registration_time) VALUES("' . $email . '", "' . $password . '", "' . date('Y.m.d H:i:s') . '")';
 		if ($db->query($query)) {
 			$listMessages[] = array(
 				'type' => 'success',
@@ -89,17 +88,17 @@ class User
 	 * @param string $password Пароль пользователя
 	 * @return int ID пользователя при правильных данных, иначе -1
 	 */
-	public static function login($email, $password) {
-		global $db, $listErrors;
-		$listErrors = "test";
+	public static function isValid($email, $password) {
+		global $db, $listMessages;
 
-		$query = "SELECT id, password FROM achi_users WHERE email = $email";
-		if ($data = $db->query($query)->fetch_assoc()) {
-			if (password_verify($password, $data['password'])) {
-				return $data['id'];
-			} else break;
+		$query = 'SELECT id, password FROM achi_users WHERE email = "' . $email . '"';
+		if (($data = $db->query($query)->fetch_assoc()) && (password_verify($password, $data['password']))) {
+			return $data['id'];
 		} else {
-			$listErrors[] = "Введены некорректные данные входа. Повторите попытку.";
+			$listMessages[] = array(
+				'type' => 'error',
+				'description' => 'Введены некорректные данные входа. Повторите попытку.'
+			);
 			return -1;
 		}
 	}

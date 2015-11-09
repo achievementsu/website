@@ -10,7 +10,7 @@ require_once './config/config.php';
 // Подключаемся к БД
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if ($db->connect_errno) { // проверка соединения
-	printf("Соединение не удалось: %s\n", $db->connect_error);
+	printf('Соединение не удалось: %s\n', $db->connect_error);
 	exit();
 }
 

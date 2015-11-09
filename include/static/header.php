@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php global $title; echo $title; ?> на Achievement.su</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
