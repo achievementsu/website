@@ -1,8 +1,12 @@
 <?php
-	$title = 'Обновления';
-	$current_page = 'feed';
-	require_once 'include/functions.php';
-	require_once 'include/static/header.php';
+
+require_once 'include/functions.php';
+
+$title = 'Обновления';
+$current_page = 'feed';
+
+Markup::pageStart();
+
 ?>
 
 <h1>Лента обновлений</h1>
@@ -35,4 +39,8 @@
 	</div>
 </div>
 
-<?php require_once 'include/static/footer.php'; ?>
+<?php
+
+Markup::pageEnd();
+
+?>

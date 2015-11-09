@@ -16,10 +16,33 @@ class Markup
 
 	/* Функция вставки шапки сайта */
 	public static function pageStart() {
+
 		require_once '/../static/header.php';
+
+		self::showMessages();
 	}
 
-	/* Функция вставки боковой панели */
+	private static function showMessages() {
+		global $listMessages;
+
+		$listMessages[] = array(
+			'type' => 'notify',
+			'title' => 'DEBUG',
+			'description' => 'Уважаемый надзиратель! Это сообщение показано в целях отладки. Очисти, пожалусто, потом код класса Markup примерно на 28 строке, бро)))'
+		);
+
+		foreach ($listMessages as $msg) {
+			if ($msg['description'] && $msg['type']) {
+				echo '<div class="section info-box info-' . $msg['type'] . '-box">';
+				if ($msg['title']) {
+					echo '<b>' . $msg['title'] . '.</b> ';
+				}
+				echo $msg['description'] . '</div>';
+			}
+		}
+	}
+
+	/* Функция вставки подвала сайта */
 	public static function pageEnd() {
 		require_once '/../static/footer.php';
 	}
