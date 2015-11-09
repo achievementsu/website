@@ -34,27 +34,41 @@ class User
 		}
 	}
 
-	/* Регистрация пользователя */
-	public static function register($username, $password, $email) {
-		global $db;
+	/**
+	 * Регистрация пользователя на сайте
+	 * @param string $email Почтовый ящик пользователя
+	 * @param string $password Пароль пользователя
+	 * @return bool Регистрация успешна или нет
+	 */
+	public static function register($email, $password) {
+		global $db, $listErrors;
 
-		if (strlen($username) < 4) {
+		if (strlen($email) > 50 || !preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)) {
+			$listErrors[] = array(
+				'type' => 'error',
+				'description' => 'Пожалуйста, введите корректный E-mail.'
+			);
 			return false;
 		}
 		if (strlen($password) < 6) {
+			$listErrors[] = array(
+				'type' => 'error',
+				'description' => 'Пароль должен содержать как минимум 6 символов.'
+			);
 			return false;
 		}
-		if (strlen($email) > 60 || !preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)) {
+
+		$data = $db->query("SELECT username, email FROM achi_users WHERE email = $email");
+		$i = 0;
+		while($data->fetch_assoc()) {
+			$i++;
+		}
+		if ($i > 0) {
+			$listErrors[] = array(
+				'type' => 'error',
+				'description' => 'Данный почтовый ящик уже занят. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
+			);
 			return false;
-			//$err[] = "E-mail введён некорректно!";
-		}
-		$query = "SELECT username, email FROM achi_users WHERE username = $username";
-		if ($db->query($query)->fetch_assoc()) {
-			return false; //Это имя пользователя уже было
-		}
-		$query = "SELECT username, email FROM achi_users WHERE email = $email";
-		if ($db->query($query)->fetch_assoc()) {
-			return false; //Email уже занят
 		}
 
 		$password = password_hash($password, PASSWORD_DEFAULT);
@@ -63,6 +77,27 @@ class User
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Функция, проверяющая валидность пользователя при входе
+	 * @param string $email Электронная почта пользователя
+	 * @param string $password Пароль пользователя
+	 * @return int ID пользователя при правильных данных, иначе -1
+	 */
+	public static function login($email, $password) {
+		global $db, $listErrors;
+		$listErrors = "test";
+
+		$query = "SELECT id, password FROM achi_users WHERE email = $email";
+		if ($data = $db->query($query)->fetch_assoc()) {
+			if (password_verify($password, $data['password'])) {
+				return $data['id'];
+			} else break;
+		} else {
+			$listErrors[] = "Введены некорректные данные входа. Повторите попытку.";
+			return -1;
+		}
 	}
 }
 
