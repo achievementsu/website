@@ -2,6 +2,11 @@
 
 require_once 'include/functions.php';
 
+global $_POST;
+if (isset($_POST['register'])) {
+	User::register($_POST['email'], $_POST['password']);
+}
+
 global $login;
 if (isset($login->user)) {
 	header('Location: feed.php');

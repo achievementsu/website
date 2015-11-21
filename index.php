@@ -2,6 +2,16 @@
 
 require_once 'include/functions.php';
 
+global $_POST;
+if (isset($_POST['login'])) {
+	if (($id = User::isValid($_POST['email'], $_POST['password'])) > 0) {
+		$user = new User($id);
+		setcookie('id', $user->id, 0);
+		setcookie('password', $user->password, 0);
+		header('Location: feed.php');
+	}
+}
+
 global $login;
 if (isset($login->user)) {
 	header('Location: feed.php');
