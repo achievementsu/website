@@ -2,12 +2,13 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (isset($login->user)) {
+	header('Location: feed.php');
+}
+
 $title = 'Добро пожаловать';
 $current_page = 'index';
-
-global $login;
-if (isset($login->user))
-	header('Location: feed.php');
 
 Markup::pageStart();
 

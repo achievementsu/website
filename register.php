@@ -2,12 +2,13 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (isset($login->user)) {
+	header('Location: feed.php');
+}
+
 $title = 'Регистрация';
 $current_page = 'register';
-
-global $login;
-if (isset($login->user))
-	header('Location: feed.php');
 
 Markup::pageStart();
 

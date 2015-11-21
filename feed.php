@@ -2,6 +2,11 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (!isset($login->user)) {
+	header('Location: index.php');
+}
+
 $title = 'Обновления';
 $current_page = 'feed';
 

@@ -2,12 +2,13 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (!isset($login->user)) {
+	header('Location: index.php');
+}
+
 $title = 'Настройки учётной записи';
 $current_page = 'profile';
-
-global $login;
-if (!isset($login->user))
-	header('Location: index.php');
 
 Markup::pageStart();
 

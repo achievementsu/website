@@ -1,8 +1,17 @@
 <?php
-	$title = 'Друзья';
-	$current_page = 'friends';
-	require_once 'include/functions.php';
-	require_once 'include/static/header.php';
+
+require_once 'include/functions.php';
+
+global $login;
+if (!isset($login->user)) {
+	header('Location: index.php');
+}
+
+$title = 'Друзья';
+$current_page = 'friends';
+
+Markup::pageStart();
+
 ?>
 
 <h1>Список друзей / результаты поиска</h1>

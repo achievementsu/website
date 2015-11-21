@@ -2,12 +2,13 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (!isset($login->user)) {
+	header('Location: index.php');
+}
+
 $title = 'Добавить достижение';
 $current_page = 'add';
-
-global $login;
-if (!isset($login->user))
-	header('Location: index.php');
 
 Markup::pageStart();
 

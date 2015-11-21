@@ -1,8 +1,17 @@
 <?php
-	$title = 'Профиль Diamond00744';
-	$current_page = 'profile';
-	require_once 'include/functions.php';
-	require_once 'include/static/header.php';
+
+require_once 'include/functions.php';
+
+global $login;
+if (!isset($login->user)) {
+	header('Location: index.php');
+}
+
+$title = 'Профиль';
+$current_page = 'profile';
+
+Markup::pageStart();
+
 ?>
 
 <h1>Профиль Diamond00744</h1>
