@@ -7,15 +7,17 @@ if (!isset($login->user)) {
 	header('Location: index.php');
 }
 
-if (isset($_GET['id'])) {
+if ((isset($_GET['id'])) && ($_GET['id']) != $login->user->id) {
 	$user = new User($_GET['id']);
-} else $user = $login->user;
-
-$title = 'Профиль ' . $user->username;
-$current_page = 'profile';
-
+	$title = 'Профиль ' . $user->username;
+} else {
+	$user = $login->user;
+	$title = 'Мой профиль';
+	$current_page = 'profile';
+}
 
 if(!isset($user->id)) {
+	$title = 'Нет такого профиля';
 	global $listMessages;
 	$listMessages[] = array(
 		'type' => 'error',
@@ -36,7 +38,12 @@ if(!isset($user->id)) {
 	</div>
 	<div class="profile-info">
 		<div><?php echo $user->fullname; ?>, <?php echo $user->birthday; ?></div>
-		<div><?php echo $user->description; ?></div>
+		<div><?php
+		if ($user->description) {
+			echo $user->description;
+		} else {
+			echo 'Я ещё не оставил информации о себе.';
+		} ?></div>
 	</div>
 </div>
 <h2>Общая статистика</h2>
@@ -66,7 +73,7 @@ if(!isset($user->id)) {
 		</div>
 	</div>
 	<div class="center-buttons">
-		<a href="achievements.php?id=diamond00744" class="center-button">Все достижения</a>
+		<a href="achievements.php?id=<?php echo $user->id; ?>" class="center-button">Все достижения</a>
 	</div>
 </div>
 
