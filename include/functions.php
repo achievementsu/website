@@ -23,6 +23,17 @@ if ($db->connect_errno) { // проверка соединения
 $listMessages = array();
 
 /* А теперь непосредственно функционал */
+
+function generateRandomString($length = 10) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+  	$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
+}
+
 require_once 'classes/user.php';
 require_once 'classes/login.php';
 

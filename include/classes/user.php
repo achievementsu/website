@@ -73,7 +73,7 @@ class User
 		}
 
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$query = 'INSERT INTO achi_users (email, password, registration_time) VALUES("' . $email . '", "' . $password . '", "' . date('Y.m.d H:i:s') . '")';
+		$query = 'INSERT INTO achi_users (email, password, email_confirmcode, registration_time) VALUES("' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
 		if ($db->query($query)) {
 			$listMessages[] = array(
 				'type' => 'success',
@@ -103,6 +103,50 @@ class User
 			);
 			return -1;
 		}
+	}
+
+	/**
+	 * Отправка подтверждения почтового ящика пользователю с указанным идентификатором
+	 * @param int $id Идентификатор пользователя
+	 */
+	public static function sendConfirmMail($id) {
+		global $db;
+
+		$query = 'SELECT email, email_confirmed, email_confirmcode FROM achi_users WHERE id = ' . $id;
+		if (($data = $db->query($query)->fetch_assoc()) && (!$data['email_confirmed'])) {
+			return mail($data['email'], 'Подтверждение регистрации на Achievement.su',
+			'<p>Приветствую! Ваш почтовый ящик был использован для регистрации на '
+			.'сайте Achievement.su. Если Вы не регистрировались на сайте, от Вас '
+			.'ничего не требуется - неподтверждённый аккаунт будет удалён через три '
+			.'дня. Иначе пройдите по <a href="http://achievement.su/confirm.php?id='
+			. $id . '&code=' . $data['email_confirmcode'] . '">этой ссылке</a>'
+			.' для завершения регистрации на сайте.</p>');
+		}
+		return false;
+	}
+
+	/**
+	 * Подтверждение почтового ящика
+	 * @param int $id Идентификатор пользователя
+	 * @param int $code Код подтверждения
+	 * @return bool Статус подтверждения ящика после выполнения функции
+	 */
+	public static function confirmEmail($id, $code) {
+		global $db;
+
+		$query = 'SELECT email, email_confirmed, email_confirmcode FROM achi_users WHERE id = ' . $id;
+		if ($data = $db->query($query)->fetch_assoc()) {
+			if ($data['email_confirmed'] == 1) {
+				return true;
+			}
+			if ($code == $data['email_confirmcode']) {
+				$query = 'UPDATE achi_users SET email_confirmed = 1, email_confirmcode = "" WHERE id = ' . $id;
+				if ($db->query($query)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
 
