@@ -15,18 +15,6 @@ Markup::pageStart();
 
 ?>
 
-<div class="section info-box info-error-box">
-	Ошибка 451. Данная страница запрещена к просмотру по законам РФ.
-</div>
-<div class="section info-box info-success-box">
-	Настройки успешно сохранены!
-</div>
-<div class="section info-box info-notify-box">
-	Пришли 2 новых достижения!
-</div>
-<div class="section info-box info-white-box">
-	Внимание! 25 сентября вечерком сайт будет закрыт на внеплановую техобслужку. Не поймите нас неправильно.
-</div>
 <h1>Настройки</h1>
 <form class="inputform">
 	<h2>Учётная запись</h2>
