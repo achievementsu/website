@@ -15,6 +15,8 @@ class User
 	public $birthday;
 	public $description;
 
+	public $achievement_count;
+
 	/* Конструктор класса по ID пользователя */
 	function __construct($id) {
 		global $db, $listMessages;
@@ -32,6 +34,13 @@ class User
 			$this->timezone          = $data['timezone'];
 			$this->birthday          = $data['birthday'];
 			$this->description       = $data['description'];
+
+			$query = 'SELECT * FROM achi_achievements WHERE to=' . $id;
+			if (($db->query($query)) && ($count = $db->query($query)->field_count())) {
+				$this->achievement_count = $count;
+			} else {
+				$this->achievement_count = 0;
+			}
 		}
 	}
 

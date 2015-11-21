@@ -49,7 +49,7 @@ if(!isset($user->id)) {
 </div>
 <h2>Общая статистика</h2>
 <div class="section profile-stats">
-	<div>Достижений: 17</div>
+	<div>Достижений: <?php echo $user->achievement_count; ?></div>
 	<div>Уровень: <?php echo $user->level; ?></div>
 </div>
 <h2>Последние достижения</h2>
