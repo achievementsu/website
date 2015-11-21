@@ -11,9 +11,7 @@ if (isset($_POST['login'])) {
 		$user = new User($id);
 		setcookie('id', $user->id, 0);
 		setcookie('password', $user->password, 0);
-	} else {
-		setcookie('id', '', time()-3600);
-		setcookie('password', '', time()-3600);
+		header('Location: feed.php');
 	}
 }
 
