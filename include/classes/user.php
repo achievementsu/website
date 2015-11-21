@@ -4,11 +4,12 @@
 class User
 {
 	public $id;
-	public $username;
-	public $password;
 	public $email;
+	public $password;
 	public $email_confirmed;
 	public $registration_time;
+	public $username;
+	public $fullname;
 	public $level;
 	public $timezone;
 	public $birthday;
@@ -21,11 +22,12 @@ class User
 		$query = 'SELECT * FROM achi_users WHERE id=' . $id;
 		if ($data = $db->query($query)->fetch_assoc()) {
 			$this->id                = $data['id'];
-			$this->username          = $data['username'];
-			$this->password          = $data['password'];
 			$this->email             = $data['email'];
+			$this->password          = $data['password'];
 			$this->email_confirmed   = $data['email_confirmed'];
 			$this->registration_time = $data['registration_time'];
+			$this->username          = $data['username'];
+			$this->fullname          = $data['fullname'];
 			$this->level             = $data['level'];
 			$this->timezone          = $data['timezone'];
 			$this->birthday          = $data['birthday'];
