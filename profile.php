@@ -7,29 +7,42 @@ if (!isset($login->user)) {
 	header('Location: index.php');
 }
 
-$title = 'Профиль ' . $login->user->username;
+if (isset($_GET['id'])) {
+	$user = new User($_GET['id']);
+} else $user = $login->user;
+
+$title = 'Профиль ' . $user->username;
 $current_page = 'profile';
 
-Markup::pageStart();
 
+if(!isset($user->id)) {
+	global $listMessages;
+	$listMessages[] = array(
+		'type' => 'error',
+		'title' => 'Ошибка',
+		'description' => 'Пользователя с данным ID не существует :('
+	);
+	Markup::pageStart();
+} else {
+	Markup::pageStart();
 ?>
 
-<h1>Профиль: <?php echo $login->user->username; ?></h1>
+<h1>Профиль: <?php echo $user->username; ?></h1>
 <h2>Информация</h2>
 <div class="section">
 	<div class="avatar">
-		<div class="level"><?php echo $login->user->level; ?></div>
-		<img src="storage/avatars/<?php echo $login->user->id; ?>.jpg">
+		<div class="level"><?php echo $user->level; ?></div>
+		<img src="storage/avatars/<?php echo $user->id; ?>.jpg">
 	</div>
 	<div class="profile-info">
-		<div><?php echo $login->user->fullname; ?>, <?php echo $login->user->birthday; ?></div>
-		<div><?php echo $login->user->description; ?></div>
+		<div><?php echo $user->fullname; ?>, <?php echo $user->birthday; ?></div>
+		<div><?php echo $user->description; ?></div>
 	</div>
 </div>
 <h2>Общая статистика</h2>
 <div class="section profile-stats">
 	<div>Достижений: 17</div>
-	<div>Уровень: <?php echo $login->user->level; ?></div>
+	<div>Уровень: <?php echo $user->level; ?></div>
 </div>
 <h2>Последние достижения</h2>
 <div class="section achievements-list">
@@ -57,4 +70,7 @@ Markup::pageStart();
 	</div>
 </div>
 
-<?php require_once 'include/static/footer.php'; ?>
+<?php
+}
+require_once 'include/static/footer.php';
+?>
