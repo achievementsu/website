@@ -11,13 +11,7 @@
 		<div id="header">
 			<div id="header-wrapper">
 				<div id="header-logo"></div>
-				<nav id="header-menu">
-					<ul>
-						<li><a href="feed.php"<?php Markup::headerLinkBacklight('feed'); ?>>Лента</a></li>
-						<li><a href="friends.php"<?php Markup::headerLinkBacklight('friends'); ?>>Друзья</a></li>
-						<li><a href="profile.php"<?php Markup::headerLinkBacklight('profile'); ?>>Diamond00744</a></li>
-					</ul>
-				</nav>
+				<?php Markup::getHeaderMenu(); ?>
 			</div>
 		</div>
 		<div id="content">
