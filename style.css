@@ -340,34 +340,34 @@ h2 {
 	background: rgba(255, 255, 255, 0.1);
 }
 
-.settings .setting {
+.inputform .setting {
 	margin: 0 0 6px;
 }
 
-.settings .setting > .setting-label {
+.inputform .setting > .setting-label {
 	float: left;
 	padding: 8px 0 0;
 	width: 200px;
 }
 
-.settings .setting > .setting-control {
+.inputform .setting > .setting-control {
 	margin-left: 220px;
 }
 
-.settings .setting > .setting-control input {
+.inputform .setting > .setting-control input {
 	width: 300px;
 }
 
-.settings .setting > .setting-control input[type="checkbox"],
-.settings .setting > .setting-control input[type="radio"] {
+.inputform .setting > .setting-control input[type="checkbox"],
+.inputform .setting > .setting-control input[type="radio"] {
 	width: auto;
 }
 
-.settings .setting > .setting-control > label {
+.inputform .setting > .setting-control > label {
 	display: block;
 }
 
-.settings .actions {
+.inputform .actions {
 	text-align: center;
 }
 

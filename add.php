@@ -1,55 +1,63 @@
 <?php
-	$title = 'Добавить достижение';
-	$current_page = 'add';
-	require_once 'include/functions.php';
-	require_once 'include/static/header.php';
+
+require_once 'include/functions.php';
+
+$title = 'Добавить достижение';
+$current_page = 'add';
+
+global $login;
+if (!isset($login->user))
+	header('Location: index.php');
+
+Markup::pageStart();
+
 ?>
 
 <h1>Добавить новое достижение</h1>
-<form id="add" class="add">
+<form class="inputform">
 	<h2>Адресант достижения</h2>
 	<div class="section">
 			<div class="setting">
 				<label class="setting-label" for="setting-to">Достижение для</label>
 				<div class="setting-control">
-					<input id="setting-to" name="achievement[to]" value="">
+					<input name="to" value="">
 				</div>
 			</div>
-					<div class="setting">
-						<label class="setting-label" for="setting-time">Достижение получил</label>
-						<div class="setting-control">
-							<input id="setting-time" name="achievement[time]" value="">
-						</div>
-					</div>
+			<div class="setting">
+				<label class="setting-label" for="setting-time">Достижение получил</label>
+				<div class="setting-control">
+					<input name="time" value="">
+				</div>
+			</div>
 	</div>
 	<h2>Подробности достижения</h2>
 	<div class="section">
 		<div class="setting">
 			<label class="setting-label" for="setting-name">Название достижения</label>
 			<div class="setting-control">
-				<input id="setting-name" name="achievement[name]" value="">
+				<input name="name" value="">
 			</div>
 		</div>
 		<div class="setting">
 			<label class="setting-label" for="setting-description">Описание</label>
 			<div class="setting-control">
-				<input id="setting-description" name="achievement[description]" value="">
+				<input name="description" value="">
 			</div>
 		</div>
 		<div class="setting">
 			<label class="setting-label" for="setting-level">Выберите уровень достижения</label>
 			<div class="setting-control">
-				<input id="setting-level" name="achievement[level]" value="">
+				<input name="level" value="">
 			</div>
 		</div>
 		<div class="setting">
 			<label class="setting-label" for="setting-color">Выберите цвет достижения</label>
 			<div class="setting-control">
-				<input id="setting-color" name="achievement[color]" value="">
+				<input name="color" value="">
 			</div>
 		</div>
 		<div class="actions">
-			<input type="submit" value="Отправить">
+			<input type="submit" name="send" value="Отправить">
 		</div>
 </form>
 
