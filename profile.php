@@ -7,29 +7,29 @@ if (!isset($login->user)) {
 	header('Location: index.php');
 }
 
-$title = 'Профиль';
+$title = 'Профиль ' . $login->user->username;
 $current_page = 'profile';
 
 Markup::pageStart();
 
 ?>
 
-<h1>Профиль Diamond00744</h1>
+<h1>Профиль: <?php echo $login->user->username; ?></h1>
 <h2>Информация</h2>
 <div class="section">
 	<div class="avatar">
-		<div class="level">99</div>
-		<img src="storage/avatars/diamond00744.jpg">
+		<div class="level"><?php echo $login->user->level; ?></div>
+		<img src="storage/avatars/<?php echo $login->user->id; ?>.jpg">
 	</div>
 	<div class="profile-info">
-		<div>Геродот Кузьмич Подкова, 25 лет</div>
-		<div>Я не указал никакой информации о себе</div>
+		<div><?php echo $login->user->fullname; ?>, <?php echo $login->user->birthday; ?></div>
+		<div><?php echo $login->user->description; ?></div>
 	</div>
 </div>
 <h2>Общая статистика</h2>
 <div class="section profile-stats">
 	<div>Достижений: 17</div>
-	<div>Уровень: 99</div>
+	<div>Уровень: <?php echo $login->user->level; ?></div>
 </div>
 <h2>Последние достижения</h2>
 <div class="section achievements-list">
