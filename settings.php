@@ -9,6 +9,7 @@ if (!isset($login->user)) {
 
 $title = 'Настройки учётной записи';
 $current_page = 'profile';
+$showSidebar = true;
 
 Markup::pageStart();
 
@@ -17,7 +18,7 @@ Markup::pageStart();
 ?>
 
 <h1>Настройки</h1>
-<form class="inputform">
+<form class="inputform" method="POST">
 	<h2>Учётная запись</h2>
 	<div class="section">
 		<div class="setting">

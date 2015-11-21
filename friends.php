@@ -9,6 +9,7 @@ if (!isset($login->user)) {
 
 $title = 'Друзья';
 $current_page = 'friends';
+$showSidebar = true;
 
 Markup::pageStart();
 

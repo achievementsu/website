@@ -9,6 +9,7 @@ if (!isset($login->user)) {
 
 $title = 'Обновления';
 $current_page = 'feed';
+$showSidebar = true;
 
 Markup::pageStart();
 

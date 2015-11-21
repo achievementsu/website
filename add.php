@@ -9,6 +9,7 @@ if (!isset($login->user)) {
 
 $title = 'Добавить достижение';
 $current_page = 'add';
+$showSidebar = true;
 
 Markup::pageStart();
 

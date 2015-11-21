@@ -15,6 +15,7 @@ if ((isset($_GET['id'])) && ($_GET['id']) != $login->user->id) {
 	$title = 'Мой профиль';
 	$current_page = 'profile';
 }
+$showSidebar = true;
 
 if(!isset($user->id)) {
 	$title = 'Нет такого профиля';

@@ -28,7 +28,7 @@ class Markup
 			<nav id="header-menu"><ul>
 					<li><a href="feed.php"<?php echo self::headerLinkBacklight('feed'); ?>>Лента</a></li>
 					<li><a href="friends.php"<?php echo self::headerLinkBacklight('friends'); ?>>Друзья</a></li>
-					<li><a href="profile.php"<?php echo self::headerLinkBacklight('profile'); ?>>Diamond00744</a></li>
+					<li><a href="profile.php"<?php echo self::headerLinkBacklight('profile'); ?>><?php echo $login->user->username; ?></a></li>
 				</ul>
 			</nav>
 		<?php } else { ?>

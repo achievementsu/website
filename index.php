@@ -19,6 +19,7 @@ if (isset($login->user)) {
 
 $title = 'Добро пожаловать';
 $current_page = 'index';
+$showSidebar = true;
 
 Markup::pageStart();
 

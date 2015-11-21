@@ -16,5 +16,12 @@
 		</div>
 		<div id="content">
 			<div id="content-wrapper">
-				<?php require 'sidebar.php'; ?>
-				<div id="content-main">
+				<?php
+				global $showSidebar;
+				if ($showSidebar == true) {
+					require 'sidebar.php';
+					echo '<div id="content-main" class="content-main-sidebar">';
+				} else {
+					echo '<div id="content-main" class="content-main-wide">';
+				}
+				?>

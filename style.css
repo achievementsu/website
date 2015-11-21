@@ -159,9 +159,14 @@ fieldset {
 	width: 900px;
 }
 
-#content-main {
+#content-main.content-main-sidebar {
 	margin: 10px;
 	width: 630px;
+}
+
+#content-main.content-main-wide {
+	margin: 10px;
+	width: 880px;
 }
 
 .info-box {
