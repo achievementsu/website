@@ -15,21 +15,21 @@ class User
 	public $description;
 
 	/* Конструктор класса по ID пользователя */
-	public function __construct($id) {
-		global $db;
+	function __construct($id) {
+		global $db, $listMessages;
 
 		$query = 'SELECT * FROM achi_users WHERE id=' . $id;
 		if ($data = $db->query($query)->fetch_assoc()) {
-			$id                = $data['id'];
-			$username          = $data['username'];
-			$password          = $data['password'];
-			$email             = $data['email'];
-			$email_confirmed   = $data['email_confirmed'];
-			$registration_time = $data['registration_time'];
-			$level             = $data['level'];
-			$timezone          = $data['timezone'];
-			$birthday          = $data['birthday'];
-			$description       = $data['description'];
+			$this->id                = $data['id'];
+			$this->username          = $data['username'];
+			$this->password          = $data['password'];
+			$this->email             = $data['email'];
+			$this->email_confirmed   = $data['email_confirmed'];
+			$this->registration_time = $data['registration_time'];
+			$this->level             = $data['level'];
+			$this->timezone          = $data['timezone'];
+			$this->birthday          = $data['birthday'];
+			$this->description       = $data['description'];
 		}
 	}
 

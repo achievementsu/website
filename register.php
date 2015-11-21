@@ -6,7 +6,7 @@ $title = 'Регистрация';
 $current_page = 'register';
 
 global $login;
-if (isset($login->$user))
+if (isset($login->user))
 	header('Location: feed.php');
 
 Markup::pageStart();

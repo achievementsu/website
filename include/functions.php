@@ -24,9 +24,8 @@ $listMessages = array();
 
 /* А теперь непосредственно функционал */
 require_once 'classes/user.php';
-require_once 'classes/login.php';
-
 require_once 'forms.php';
+require_once 'classes/login.php';
 
 require_once 'classes/markup.php';
 

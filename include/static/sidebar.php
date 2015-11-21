@@ -2,7 +2,7 @@
 
 <?php
 global $login;
-if (isset($login->$user)) {
+if (isset($login->user)) {
 ?>
 
 	<div class="sideblock sideblock-new">
@@ -10,13 +10,13 @@ if (isset($login->$user)) {
 	</div>
 	<div class="sideblock sideblock-profile">
 		<div class="title">
-			<?php echo $login->$user->$username ?>
+			<?php echo $login->user->username ?>
 		</div>
 		<div class="avatar">
 			<div class="level">
-				<?php echo $login->$user->$level ?>
+				<?php echo $login->user->level ?>
 			</div>
-			<img src="storage/avatars/diamond00744.jpg">
+			<img src="storage/avatars/<?php $login->user->id ?>.jpg">
 		</div>
 		<ul class="menu">
 			<li><a href="profile.php">Профиль</a></li>
