@@ -2,6 +2,11 @@
 
 require_once 'include/functions.php';
 
+global $login;
+if (isset($login->user)) {
+	header('Location: feed.php');
+}
+
 global $_POST;
 if (isset($_POST['register'])) {
 	if ($_POST['password'] == $_POST['password-repeat']) {
@@ -13,11 +18,6 @@ if (isset($_POST['register'])) {
 			'description' => 'Пароли не совпадают'
 		);
 	}
-}
-
-global $login;
-if (isset($login->user)) {
-	header('Location: feed.php');
 }
 
 $title = 'Регистрация';
