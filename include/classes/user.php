@@ -46,13 +46,28 @@ class User
 
 	/**
 	 * Регистрация пользователя на сайте
+	 * @param string $username Имя пользователя
 	 * @param string $email Почтовый ящик пользователя
 	 * @param string $password Пароль пользователя
 	 * @return bool Регистрация успешна или нет
 	 */
-	public static function register($email, $password) {
+	public static function registerUser($username, $email, $password) {
 		global $db, $listMessages;
 
+		if (strlen($username) > 32) {
+			$listMessages[] = array(
+				'type' => 'error',
+				'description' => 'Слишком длинное имя пользователя.'
+			);
+			return false;
+		}
+		if (!preg_match("|^[-0-9a-z_\.\s]+$|i", $username)) {
+			$listMessages[] = array(
+				'type' => 'error',
+				'description' => 'Имя пользователя содержит недопустимые символы.'
+			);
+			return false;
+		}
 		if (strlen($email) > 50 || !preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)) {
 			$listMessages[] = array(
 				'type' => 'error',
@@ -82,7 +97,7 @@ class User
 		}
 
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$query = 'INSERT INTO achi_users (email, password, email_confirmcode, registration_time) VALUES("' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
+		$query = 'INSERT INTO achi_users (username, email, password, email_confirmcode, registration_time) VALUES("' . $username . '", "' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
 		if ($db->query($query)) {
 			$listMessages[] = array(
 				'type' => 'success',

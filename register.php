@@ -8,14 +8,14 @@ if (isset($login->user)) {
 }
 
 global $_POST;
-if (isset($_POST['register'])) {
+if ($_POST['register']) {
 	if ($_POST['password'] == $_POST['password-repeat']) {
-		User::register($_POST['email'], $_POST['password']);
+		User::registerUser($_POST['username'], $_POST['email'], $_POST['password']);
 	} else {
 		global $listMessages;
 		$listMessages[] = array(
 			'type' => 'error',
-			'description' => 'Пароли не совпадают'
+			'description' => 'Пароли не совпадают.'
 		);
 	}
 }
@@ -32,6 +32,12 @@ Markup::pageStart();
 <form class="inputform" method="POST">
 	<h2>Основные данные</h2>
 	<div class="section">
+		<div class="setting">
+			<label class="setting-label" for="username">Имя пользователя</label>
+			<div class="setting-control">
+				<input type="text" tabindex="1" maxlength="50" name="username">
+			</div>
+		</div>
 		<div class="setting">
 			<label class="setting-label" for="email">Адрес электронной почты</label>
 			<div class="setting-control">
