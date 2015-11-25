@@ -11,45 +11,109 @@ $title = 'Друзья';
 $current_page = 'friends';
 $showSidebar = true;
 
+if (!$_POST['search'] && $_GET['act'] && $_GET['id'] && $_GET['id'] != $login->user->id) {
+	global $listMessages;
+	$user = new User($_GET['id']);
+	if (isset($user->id)) {
+		global $db;
+		if ($_GET['act'] == 'add') {
+			$db->query('INSERT INTO achi_friends (subscriber, subscribant) VALUES(' . $login->user->id . ', ' . $user->id . ')');
+			if (User::isFriends($login->user->id, $user->id)) {
+				$listMessages[] = array(
+					'type' => 'notify',
+					'description' => 'Вы и ' . $user->username . ' теперь друзья!'
+				);
+			} else {
+				$listMessages[] = array(
+					'type' => 'notify',
+					'description' => 'Вы отправили предложение дружбы ' . $user->username . '.'
+				);
+			}
+		}
+		if ($_GET['act'] == 'delete') {
+			$wasFriends = User::isFriends($login->user->id, $user->id);
+			$db->query('DELETE FROM achi_friends WHERE subscriber = ' . $login->user->id . ' AND subscribant = ' . $_GET['id'] . ' LIMIT 1');
+			if ($wasFriends) {
+				$listMessages[] = array(
+					'type' => 'notify',
+					'description' => 'Вы с ' . $user->username . ' больше не дружите.'
+				);
+			} else {
+				$listMessages[] = array(
+					'type' => 'notify',
+					'description' => 'Заявка дружбы к ' . $user->username . ' отменена.'
+				);
+			}
+		}
+	}
+}
+
+function showUserBlock($id) {
+	global $login;
+	$user = new User($id);
+	$subByLoggedIn = User::isSubscribers($login->user->id, $user->id);
+	$subOnLoggedIn = User::isSubscribers($user->id, $login->user->id);
+	?>
+	<div class="userline">
+		<div class="avatar">
+			<div class="level"><?php echo $user->level; ?></div>
+			<img src="storage/avatars/<?php echo $user->id; ?>.jpg">
+		</div>
+		<div class="actions">
+			<?php if ($subByLoggedIn && $subOnLoggedIn) { ?>
+			<a href="add.php?id=<?php echo $user->id; ?>">Выдать достижение</a>
+			<?php } else if (!$subByLoggedIn && $subOnLoggedIn) { ?>
+			<a href="friends.php?id=<?php echo $user->id; ?>&amp;act=add">Принять заявку в друзья</a>
+			<?php } else if (!$subByLoggedIn && !$subOnLoggedIn) { ?>
+			<a href="friends.php?id=<?php echo $user->id; ?>&amp;act=add">Отправить заявку в друзья</a>
+			<?php } ?>
+			<a href="profile.php?id=<?php echo $user->id; ?>">Подробнее</a>
+			<?php if ($subByLoggedIn && $subOnLoggedIn) { ?>
+			<a href="friends.php?id=<?php echo $user->id; ?>&amp;act=delete">Удалить из друзей</a>
+			<?php } else if ($subByLoggedIn && !$subOnLoggedIn) { ?>
+			<a href="friends.php?id=<?php echo $user->id; ?>&amp;act=delete">Отменить заявку в друзья</a>
+			<?php } ?>
+		</div>
+		<div class="info">
+			<div><a href="profile.php?id=<?php echo $user->id; ?>"><?php echo $user->username; ?></a></div>
+			<div><?php echo $user->fullname; ?></div>
+			<div><?php echo $user->description; ?></div>
+		</div>
+	</div>
+	<?php
+}
+
 Markup::pageStart();
 
-global $_POST;
-if ($_POST['search'] && $_POST['username']) { ?>
+?>
+
+<h1>Поиск</h1>
+<h2>Найти друга</h2>
+<div class="section">
+	<form id="add-friend" method="POST">
+		<input type="text" tabindex="1" maxlength="32" value="<?php echo $_POST['username']; ?>" name="username">
+		<input type="submit" tabindex="2" value="Поиск" name="search">
+	</form>
+</div>
+
+<?php
+if ($_POST['search'] && $_POST['username']) {
+	$data = $db->query('SELECT * FROM achi_users WHERE username LIKE "%' . $_POST['username'] . '%"');
+?>
 
 <h1>Результаты поиска</h1>
 <div id="friends">
-	<h2>Найдено: </h2>
+	<h2>Найдено: <?php echo $data->num_rows; ?></h2>
 	<div class="section">
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">49</div>
-				<img src="storage/avatars/tippa44007.jpg">
-			</div>
-			<div class="actions">
-				<a href="add.php">Выдать достижение</a>
-				<a href="profile.php">Подробнее</a>
-				<a href="profile.php?act=delete">Удалить</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">tippa44007</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">84</div>
-				<img src="storage/avatars/lirrick.jpg">
-			</div>
-			<div class="actions">
-				<a href="add.php">Выдать достижение</a>
-				<a href="profile.php">Подробнее</a>
-				<a href="profile.php?act=delete">Удалить</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">Lirrick</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
+		<?php
+		if ($data->num_rows) {
+			while ($result = $data->fetch_assoc()) {
+				if ($result['id'] != $login->user->id) {
+					showUserBlock($result['id']);
+				}
+			}
+		}
+		?>
 	</div>
 </div>
 
@@ -57,82 +121,54 @@ if ($_POST['search'] && $_POST['username']) { ?>
 
 <h1>Список друзей</h1>
 <div id="friends">
-	<h2>Добавить друга</h2>
-	<div class="section">
-		<form id="add-friend" method="POST">
-			<input type="text" tabindex="1" maxlength="32" name="username">
-			<input type="submit" tabindex="2" value="Поиск" name="search">
-		</form>
-	</div>
+	<?php
+	$data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $login->user->id);
+	if ($data->num_rows) {
+	?>
 	<h2>Входящие заявки</h2>
 	<div class="section">
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">49</div>
-				<img src="storage/avatars/tippa44007.jpg">
-			</div>
-			<div class="actions">
-				<a href="profile.php?act=accept">Принять</a>
-				<a href="profile.php">Подробнее</a>
-				<a href="profile.php?act=delete">Удалить</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">tippa44007</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
+	<?php
+		while ($result = $data->fetch_assoc()) {
+			if (!User::isSubscribers($login->user->id, $result['subscriber'])) {
+				showUserBlock($result['subscriber']);
+			}
+		}
+	?>
 	</div>
-	<h2>32 друга</h2>
+	<?php
+	}
+
+	$data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $login->user->id);
+	if ($data->num_rows) {
+	?>
+	<h2>Друзья</h2>
 	<div class="section">
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">49</div>
-				<img src="storage/avatars/tippa44007.jpg">
-			</div>
-			<div class="actions">
-				<a href="add.php">Выдать достижение</a>
-				<a href="profile.php">Подробнее</a>
-				<a href="profile.php?act=delete">Удалить</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">tippa44007</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">84</div>
-				<img src="storage/avatars/lirrick.jpg">
-			</div>
-			<div class="actions">
-				<a href="add.php">Выдать достижение</a>
-				<a href="profile.php">Подробнее</a>
-				<a href="profile.php?act=delete">Удалить</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">Lirrick</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
+	<?php
+		while ($result = $data->fetch_assoc()) {
+			if (User::isSubscribers($login->user->id, $result['subscriber'])) {
+				showUserBlock($result['subscriber']);
+			}
+		}
+	?>
 	</div>
+	<?php
+	}
+
+	$data = $db->query('SELECT * FROM achi_friends WHERE subscriber = ' . $login->user->id);
+	if ($data->num_rows) {
+	?>
 	<h2>Исходящие заявки</h2>
 	<div class="section">
-		<div class="userline">
-			<div class="avatar">
-				<div class="level">49</div>
-				<img src="storage/avatars/tippa44007.jpg">
-			</div>
-			<div class="actions">
-				<a href="profile.php?act=delete">Отменить заявку</a>
-				<a href="profile.php">Подробнее</a>
-			</div>
-			<div class="info">
-				<div><a href="profile.php?id=1">tippa44007</a></div>
-				<div>lalalalalalala</div>
-			</div>
-		</div>
+	<?php
+		while ($result = $data->fetch_assoc()) {
+			if (!User::isSubscribers($result['subscribant'], $login->user->id)) {
+				showUserBlock($result['subscribant']);
+			}
+		}
+	?>
 	</div>
-</div>
-
-<?php }
-require_once 'include/static/footer.php'; ?>
+	<?php
+	}
+}
+require_once 'include/static/footer.php';
+?>

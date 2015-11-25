@@ -84,14 +84,18 @@ class User
 		}
 
 		$data = $db->query('SELECT * FROM achi_users WHERE email = "' . $email . '"');
-		$i = 0;
-		while($data->fetch_assoc()) {
-			$i++;
-		}
-		if ($i > 0) {
+		if ($data->num_rows) {
 			$listMessages[] = array(
 				'type' => 'error',
 				'description' => 'Данный почтовый ящик уже занят. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
+			);
+			return false;
+		}
+		$data = $db->query('SELECT * FROM achi_users WHERE username = "' . $username . '"');
+		if ($data->num_rows) {
+			$listMessages[] = array(
+				'type' => 'error',
+				'description' => 'Данное имя пользователя уже занято. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
 			);
 			return false;
 		}
@@ -127,6 +131,22 @@ class User
 			);
 			return -1;
 		}
+	}
+
+	/**
+	 * Проверка, добавил ли один другого в друзья
+	 * @param int $subscriber Отправитель заявки
+	 * @param int $subscribant Получатель заявки
+	 * @return bool Добавил ли сабскрайбер сабскрибанта
+	 */
+	public static function isSubscribers($subscriber, $subscribant) {
+		global $db;
+		$query = 'SELECT * FROM achi_friends WHERE subscriber = ' . $subscriber . ' AND subscribant = ' . $subscribant;
+		return $db->query($query)->num_rows;
+	}
+
+	public static function isFriends($user1, $user2) {
+		return User::isSubscribers($user1, $user2) && User::isSubscribers($user2, $user1);
 	}
 
 	/**

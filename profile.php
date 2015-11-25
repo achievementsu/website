@@ -7,7 +7,7 @@ if (!isset($login->user)) {
 	header('Location: index.php');
 }
 
-if ((isset($_GET['id'])) && ($_GET['id']) != $login->user->id) {
+if ($_GET['id'] && $_GET['id'] != $login->user->id) {
 	$user = new User($_GET['id']);
 	$title = 'Профиль ' . $user->username;
 } else {
@@ -17,7 +17,7 @@ if ((isset($_GET['id'])) && ($_GET['id']) != $login->user->id) {
 }
 $showSidebar = true;
 
-if(!isset($user->id)) {
+if (!isset($user->id)) {
 	$title = 'Нет такого профиля';
 	global $listMessages;
 	$listMessages[] = array(
