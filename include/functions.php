@@ -1,7 +1,10 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-//
+// Работает относительно Гринвича
+date_default_timezone_set("UTC");
+
+// Работа с паролями на старых версиях PHP
 require_once 'include/password.php';
 
 // Импортируем конфигурацию
