@@ -11,32 +11,75 @@ $title = 'Добавить достижение';
 $current_page = 'add';
 $showSidebar = true;
 
+function sendAchievement() {
+	global $login, $listMessages;
+
+	// Валидность получателя
+	if (!($_POST['to'] == $login->user->id || User::isFriends($login->user->id, $_POST['to']))) {
+		$listMessages[] = array(
+			'type' => 'error',
+			'description' => 'Получатель достижения должен являться Вашим другом или Вами.'
+		);
+		return;
+	}
+
+	// Разбор даты
+	if (!$_POST['time']) {
+		$_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
+	}
+	if ($_POST['time'] && !strtotime($_POST['time'])) {
+		$listMessages[] = array(
+			'type' => 'error',
+			'description' => 'Дата указана в неприемлемом формате. Рекомендуемый формат: ГГГГ-ММ-ДД ЧЧ:ММ:СС'
+		);
+		return;
+	}
+	if ($_POST['time'] && strtotime($_POST['time']) && (strtotime($_POST['time'])-($login->user->timezone * 3600) > time())) {
+		$listMessages[] = array(
+			'type' => 'error',
+			'description' => 'Вы не можете отправлять достижения будущего :)<br>Время было возвращено на круги своя.'
+		);
+		$_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
+		//$_POST['time'] = date('Y.m.d H:i:s', time()+($login->user->timezone * 3600));
+		return;
+	}
+
+	if (!$_POST['name']) {
+		$listMessages[] = array(
+			'type' => 'error',
+			'description' => 'Необходимо ввести название достижения.'
+		);
+		return;
+	}
+	if (!$_POST['description']) {
+		$listMessages[] = array(
+			'type' => 'error',
+			'description' => 'Необходимо описать достижение.'
+		);
+		return;
+	}
+
+	if (
+	!(strlen($_POST['color']) == 3 || strlen($_POST['color']) == 6) ||
+	!preg_match("|^[0-9a-f]+$|i", $_POST['color'])
+	) {
+		$_POST['color'] = '000000';
+	}
+}
+
 if (!$_POST['to']) {
 	if (!($_POST['to'] = $_GET['id'])) {
 		$_POST['to'] = $login->user->id;
 	}
 }
-if (!$_POST['level']) {
+if ($_POST['level'] < 1) {
 	$_POST['level'] = 1;
-}
-if (!$_POST['color']) {
-	$_POST['color'] = '000000';
-}
-if (!$_POST['time']) {
-	$_POST['time'] = date('Y.m.d H:i:s', time()+($login->user->timezone * 3600));
+} elseif ($_POST['level'] > 10) {
+	$_POST['level'] = 10;
 }
 
-if ($_POST['send'] && ($_POST['to'] == $login->user->id || User::isFriends($login->user->id, $_POST['to']))) {
-	$listMessages[] = array(
-		'type' => 'success',
-		'description' => 'Достижение отправлено!'
-	);
-} elseif ($_POST['send']) {
-	$_POST['to'] = $login->user->id;
-	$listMessages[] = array(
-		'type' => 'error',
-		'description' => 'Невозможно отправить достижение для этого человека.'
-	);
+if ($_POST['send']) {
+	sendAchievement();
 }
 
 Markup::pageStart();
@@ -87,10 +130,10 @@ Markup::pageStart();
 			</div>
 		</div>
 		<div class="setting">
-			<label class="setting-label" for="iconfile">Загрузите иконку достижения (64*64)</label>
+			<label class="setting-label" for="icon">Загрузите иконку достижения (64*64)</label>
 			<div class="setting-control">
 				<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-				<input name="iconfile" type="file" />
+				<input name="icon" type="file" />
 			</div>
 		</div>
 		<div class="actions">
