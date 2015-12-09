@@ -57,7 +57,7 @@ function showUserBlock($id) {
 	<div class="userline">
 		<div class="avatar">
 			<div class="level"><?php echo $user->level; ?></div>
-			<img src="storage/avatars/<?php echo $user->id; ?>.jpg">
+			<img src="<?php echo $user->avatar ?>">
 		</div>
 		<div class="actions">
 			<?php if ($subByLoggedIn && $subOnLoggedIn) { ?>
