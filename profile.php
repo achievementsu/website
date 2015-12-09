@@ -35,7 +35,7 @@ if (!isset($user->id)) {
 <div class="section">
 	<div class="avatar">
 		<div class="level"><?php echo $user->level; ?></div>
-		<img src="storage/avatars/<?php echo $user->id; ?>.jpg">
+		<img src="<?php echo $user->avatar; ?>">
 	</div>
 	<div class="profile-info">
 		<div><?php echo $user->fullname; ?>, <?php echo $user->birthday; ?></div>

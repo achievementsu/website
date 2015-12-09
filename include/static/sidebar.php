@@ -16,7 +16,7 @@ if (isset($login->user)) {
 			<div class="level">
 				<?php echo $login->user->level ?>
 			</div>
-			<img src="storage/avatars/<?php echo $login->user->id; ?>.jpg">
+			<img src="<?php echo $login->user->avatar ?>">
 		</div>
 		<ul class="menu">
 			<li><a href="profile.php">Профиль</a></li>

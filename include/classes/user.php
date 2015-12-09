@@ -17,6 +17,8 @@ class User
 
 	public $achievement_count;
 
+	public $avatar;
+
 	/* Конструктор класса по ID пользователя */
 	function __construct($id) {
 		global $db, $listMessages;
@@ -35,11 +37,21 @@ class User
 			$this->birthday          = $data['birthday'];
 			$this->description       = $data['description'];
 
-			$query = 'SELECT * FROM achi_achievements WHERE to=' . $id;
-			if (($db->query($query)) && ($count = $db->query($query)->field_count())) {
+			$query = 'SELECT * FROM achi_achievements WHERE `to`=' . $id;
+			if (($db->query($query)) && ($count = $db->query($query)->num_rows)) {
 				$this->achievement_count = $count;
 			} else {
 				$this->achievement_count = 0;
+			}
+
+			if (file_exists('storage/avatars/' . $id . '.jpg')) {
+				$this->avatar = 'storage/avatars/' . $id . '.jpg';
+			} else if (file_exists('storage/avatars/' . $id . '.png')) {
+				$this->avatar = 'storage/avatars/' . $id . '.png';
+			} else if (file_exists('storage/avatars/' . $id . '.gif')) {
+				$this->avatar = 'storage/avatars/' . $id . '.gif';
+			} else {
+				$this->avatar = 'storage/avatars/noavatar.png';
 			}
 		}
 	}
