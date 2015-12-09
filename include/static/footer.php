@@ -17,11 +17,11 @@
 		</div>
 	</div>
 </div>
-<div class="popup-achievement" style="border-color: #0d0;">
+<?php /* <div class="popup-achievement" style="border-color: #0d0;">
 	<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg"></div>
 	<div class="title">Получено достижение</div>
 	<div class="text">Делом, наконец, занялся</div>
 	<div class="comment">от tippa44007</div>
-</div>
+</div> */ ?>
 </body>
 </html>

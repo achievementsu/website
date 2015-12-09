@@ -1,6 +1,23 @@
 <div id="content-sidebar">
 
 <?php
+function showSidebarAchievementsList($id) {
+	global $db, $login;
+
+	$query = 'SELECT * FROM `achi_achievements` WHERE `to`=' . $id . ' ORDER BY `time_sent` DESC LIMIT 0 , 3';
+	$result = $db->query($query);
+
+	while ($data = $result->fetch_assoc()) {
+	?>
+	<div class="achievement" style="border-color: #<?php echo $data['color'] ?>;">
+		<div class="icon" style="border-color: #<?php echo $data['color'] ?>;"><img src="storage/icons/<?php echo $data['image'] ?>" width="32px" height="32px"></div>
+		<div class="title"><?php echo $data['name'] ?></div>
+		<div class="clearfix"></div>
+	</div>
+	<?php
+	}
+}
+
 global $login;
 if (isset($login->user)) {
 ?>
@@ -28,21 +45,7 @@ if (isset($login->user)) {
 			Последние достижения
 		</div>
 		<div class="last">
-			<div class="achievement" style="border-color: #0d0;">
-				<div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="title">Делом, наконец, занялся</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="achievement" style="border-color: #d00;">
-				<div class="icon" style="--box-shadow-color: #d00;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="title">Достижение 2</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="achievement" style="border-color: #ed0;">
-				<div class="icon" style="--box-shadow-color: #ed0;"><img src="storage/icons/randomcode.jpg" width="32px" height="32px"></div>
-				<div class="title">Достижение 1</div>
-				<div class="clearfix"></div>
-			</div>
+			<?php showSidebarAchievementsList($login->user->id); ?>
 		</div>
 	</div>
 
