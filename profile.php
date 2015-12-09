@@ -15,8 +15,8 @@ function showAchievementsList($id) {
 
 	while ($data = $result->fetch_assoc()) {
 	?>
-	<div class="achievement-full" style="border-color: <?php echo $data['color'] ?>;">
-		<div class="icon" style="border-color: <?php echo $data['color'] ?>;">
+	<div class="achievement-full" style="border-color: #<?php echo $data['color'] ?>;">
+		<div class="icon" style="border-color: #<?php echo $data['color'] ?>;">
 			<img src="storage/icons/<?php echo $data['image'] ?>">
 		</div>
 		<div class="info">

@@ -398,16 +398,13 @@ h2 {
 	border-radius: 4px;
 	border: 1px solid #000;
 	background: transparent linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-	box-shadow: 0 2px 8px 0 #000;
 }
 
 .achievement-full > .icon {
 	float: left;
 	width: 64px;
 	height: 64px;
-	--box-shadow-color: #000;
-	border: 1px solid var(--box-shadow-color);
-	box-shadow: 0 0 4px 0 var(--box-shadow-color);
+	border: 1px solid #000;
 }
 
 .achievement-full > .info {
@@ -520,19 +517,16 @@ h2 {
 	margin: 4px;
 	padding: 4px;
 	border-radius: 2px;
-	border: 1px solid #111;
-	box-shadow: 0 1px 2px 0 #000;
+	border: 1px solid #000;
 }
 
 .sideblock-profile > .last > .achievement > .icon {
-	--box-shadow-color: #fff;
 	float: left;
 	width: 32px;
 	height: 32px;
 	margin-right: 6px;
 	border-radius: 2px;
-	border: 1px solid var(--box-shadow-color);
-	box-shadow: 0 0 2px 0 var(--box-shadow-color);
+	border: 1px solid #000;
 }
 
 .sideblock-profile > .last > .achievement > .title {
@@ -607,14 +601,12 @@ h2 {
 }
 
 .popup-achievement > .icon {
-	--box-shadow-color: #fff;
 	position: absolute;
 	width: 64px;
 	height: 64px;
 	margin-left: 15px;
 	margin-top: 14px;
-	border: 1px solid var(--box-shadow-color);
-	box-shadow: 0 0 4px 0 var(--box-shadow-color);
+	border: 1px solid #000;
 }
 
 .popup-achievement > .title {
