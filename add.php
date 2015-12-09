@@ -95,7 +95,7 @@ function sendAchievement() {
 		return false;
 	}
 
-	if ($_FILES['icon']['size'] > 30000) {
+	if ($_FILES['icon']['size'] > 100000) {
 		$listMessages[] = array(
 			'type' => 'error',
 			'description' => 'Ошибка загрузки иконки: превышен максимальный размер...'
@@ -276,7 +276,7 @@ Markup::pageStart();
 		<div class="setting">
 			<label class="setting-label" for="icon">Загрузите иконку достижения<br>(размер изображения: 64*64)</label>
 			<div class="setting-control">
-				<input type="hidden" name="MAX_FILE_SIZE" value="30000">
+				<input type="hidden" name="MAX_FILE_SIZE" value="100000">
 				<input name="icon" type="file" required>
 			</div>
 		</div>
