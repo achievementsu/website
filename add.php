@@ -175,6 +175,31 @@ function sendAchievement() {
 	return false;
 }
 
+function showSendList() {
+	global $db, $login;
+	echo '<select name="to" required>';
+	echo '<option value="' . $login->user->id . '"';
+	if (!$_GET['id']) {
+		echo ' selected';
+	}
+	echo '>' . $login->user->username . "</option>\n";
+
+	$query = 'SELECT id, username FROM achi_users WHERE';
+	$query .= '(achi_users.id IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $login->user->id . ')) AND';
+	$query .= '(achi_users.id IN (SELECT subscribant FROM achi_friends WHERE subscriber = ' . $login->user->id . '))';
+
+	$result = $db->query($query);
+	while ($data = $result->fetch_assoc()) {
+		echo '<option value="' . $data['id'] . '"';
+		if ($_GET['id'] == $data['id']) {
+			echo ' selected';
+		}
+		echo '>' . $data['username'] . "</option>";
+	}
+
+	echo '</select>';
+}
+
 if (!$_POST['to']) {
 	if (!($_POST['to'] = $_GET['id'])) {
 		$_POST['to'] = $login->user->id;
@@ -201,7 +226,7 @@ Markup::pageStart();
 			<div class="setting">
 				<label class="setting-label" for="to">Достижение для</label>
 				<div class="setting-control">
-					<input name="to" required value="<?php echo $_POST['to']; ?>">
+					<?php showSendList(); ?>
 				</div>
 			</div>
 			<div class="setting">
@@ -228,17 +253,28 @@ Markup::pageStart();
 		<div class="setting">
 			<label class="setting-label" for="level">Выберите уровень достижения</label>
 			<div class="setting-control">
-				<input name="level" required min="1" max="10" value="<?php echo $_POST['level']; ?>">
+				<select name="level" required>
+					<option value="1"<?php if ($_POST['level'] == 1) { echo ' selected'; }?>>1: Незначительное достижение-однодневка</option>
+					<option value="2"<?php if ($_POST['level'] == 2) { echo ' selected'; }?>>2: Труд нескольких дней</option>
+					<option value="3"<?php if ($_POST['level'] == 3) { echo ' selected'; }?>>3: Уже месяц...</option>
+					<option value="4"<?php if ($_POST['level'] == 4) { echo ' selected'; }?>>4: Уже несколько месяцев...</option>
+					<option value="5"<?php if ($_POST['level'] == 5) { echo ' selected'; }?>>5: Уже полгода...</option>
+					<option value="6"<?php if ($_POST['level'] == 6) { echo ' selected'; }?>>6: Поднялся на ступеньку по лестнице жизни</option>
+					<option value="7"<?php if ($_POST['level'] == 7) { echo ' selected'; }?>>7: Крупное жизненное достижение</option>
+					<option value="8"<?php if ($_POST['level'] == 8) { echo ' selected'; }?>>8: Очень крупное жизненное достижение</option>
+					<option value="9"<?php if ($_POST['level'] == 9) { echo ' selected'; }?>>9: Огромный жизненный результат</option>
+					<option value="10"<?php if ($_POST['level'] == 10) { echo ' selected'; }?>>10: Предельно глобальное достижение</option>
+				</select>
 			</div>
 		</div>
 		<div class="setting">
-			<label class="setting-label" for="color">Выберите цвет достижения</label>
+			<label class="setting-label" for="color">Выберите цвет достижения<br>(в HEX формате без #)</label>
 			<div class="setting-control">
 				<input name="color" value="<?php echo $_POST['color']; ?>">
 			</div>
 		</div>
 		<div class="setting">
-			<label class="setting-label" for="icon">Загрузите иконку достижения (64*64)</label>
+			<label class="setting-label" for="icon">Загрузите иконку достижения<br>(размер изображения: 64*64)</label>
 			<div class="setting-control">
 				<input type="hidden" name="MAX_FILE_SIZE" value="30000">
 				<input name="icon" type="file" required>

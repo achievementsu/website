@@ -359,7 +359,8 @@ h2 {
 	margin-left: 220px;
 }
 
-.inputform .setting > .setting-control input {
+.inputform .setting > .setting-control input,
+.inputform .setting > .setting-control select {
 	width: 300px;
 }
 
