@@ -124,6 +124,7 @@ function sendAchievement() {
 		return false;
 	}
 
+	// http://php.net/manual/ru/features.file-upload.php
 	/*$finfo = new finfo(FILEINFO_MIME_TYPE);
 	if (false === $ext = array_search(
 		$finfo->file($_FILES['icon']['tmp_name']),
@@ -142,7 +143,8 @@ function sendAchievement() {
 	}*/
 
 	$fileName = sprintf('%s.%s',
-		sha1_file($_FILES['icon']['tmp_name']),
+		//sha1_file($_FILES['icon']['tmp_name']),
+		generateRandomString(20),
 		$ext
 	);
 
@@ -199,13 +201,13 @@ Markup::pageStart();
 			<div class="setting">
 				<label class="setting-label" for="to">Достижение для</label>
 				<div class="setting-control">
-					<input name="to" value="<?php echo $_POST['to']; ?>">
+					<input name="to" required value="<?php echo $_POST['to']; ?>">
 				</div>
 			</div>
 			<div class="setting">
 				<label class="setting-label" for="time">Достижение получил</label>
 				<div class="setting-control">
-					<input name="time" value="<?php echo $_POST['time']; ?>">
+					<input name="time" type="datetime" value="<?php echo $_POST['time']; ?>">
 				</div>
 			</div>
 	</div>
@@ -214,19 +216,19 @@ Markup::pageStart();
 		<div class="setting">
 			<label class="setting-label" for="name">Название достижения</label>
 			<div class="setting-control">
-				<input name="name" value="<?php echo $_POST['name']; ?>">
+				<input name="name" required value="<?php echo $_POST['name']; ?>">
 			</div>
 		</div>
 		<div class="setting">
 			<label class="setting-label" for="description">Описание</label>
 			<div class="setting-control">
-				<input name="description" value="<?php echo $_POST['description']; ?>">
+				<input name="description" required value="<?php echo $_POST['description']; ?>">
 			</div>
 		</div>
 		<div class="setting">
 			<label class="setting-label" for="level">Выберите уровень достижения</label>
 			<div class="setting-control">
-				<input name="level" value="<?php echo $_POST['level']; ?>">
+				<input name="level" required min="1" max="10" value="<?php echo $_POST['level']; ?>">
 			</div>
 		</div>
 		<div class="setting">
@@ -238,8 +240,8 @@ Markup::pageStart();
 		<div class="setting">
 			<label class="setting-label" for="icon">Загрузите иконку достижения (64*64)</label>
 			<div class="setting-control">
-				<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-				<input name="icon" type="file" />
+				<input type="hidden" name="MAX_FILE_SIZE" value="30000">
+				<input name="icon" type="file" required>
 			</div>
 		</div>
 		<div class="actions">
