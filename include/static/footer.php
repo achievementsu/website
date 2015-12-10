@@ -4,8 +4,7 @@
 	<div id="footer">
 		<div id="footer-wrapper">
 			<a href="http://00744.ru" target="_blank" class="logo"></a>
-			<p>Copyright © 2015 by .00744</p>
-			<p>Все права правы, а лева - левы. Учитывайте это при переходе оживлённых трасс.</p>
+			<p>Copyright © 2015 by Diamond00744. Все права правы, а лева - левы. Учитывайте это при переходе оживлённых трасс.</p>
 			<nav id="footer-menu">
 				<ul>
 					<li><a href="about.php">О сайте</a></li>
