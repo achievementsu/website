@@ -24,7 +24,7 @@ function showAchievementsList($id) {
 			<div class="description"><?php echo $data['description'] ?></div>
 			<div class="meta">
 				<div class="level">Уровень: <?php echo $data['level'] ?></div>
-				<div class="sender">Прислал: The God</div>
+				<div class="sender">Прислал: <?php $fromUser = new User($data['from']); echo $fromUser->username; ?></div>
 				<div class="time"><?php echo $data['time_set'] ?> (получено <?php echo $data['time_sent'] ?>)</div>
 			</div>
 		</div>
