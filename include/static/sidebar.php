@@ -53,13 +53,13 @@ if (isset($login->user)) {
 
 	<div class="sideblock sideblock-login">
 		<form id="login-form" name="login" method="POST">
-			<input id="login-email" type="text" tabindex="1" maxlength="50" name="email" placeholder="Адрес электронной почты"><br>
-			<input id="login-password" type="password" tabindex="2" minlength="3" maxlength="50" autocomplete="off" name="password" placeholder="Пароль"><br>
+			<input type="text" maxlength="50" name="email" placeholder="Адрес электронной почты"><br>
+			<input type="password" maxlength="50" autocomplete="off" name="password" placeholder="Пароль"><br>
 			<label for="login-remember">
-				<input id="login-remember" type="checkbox" tabindex="3">
+				<input type="checkbox" name="remember">
 				Запомнить меня
 			</label><br>
-			<input id="login-button" type="submit" tabindex="4" name="login" value="Вход">
+			<input type="submit" name="login" value="Вход">
 		</form><br>
 		<a href="restore.php">Восстановление доступа</a><br>
 		<a href="register.php">Регистрация</a>

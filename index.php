@@ -6,8 +6,13 @@ global $_POST;
 if (isset($_POST['login'])) {
 	if (($id = User::isValid($_POST['email'], $_POST['password'])) > 0) {
 		$user = new User($id);
-		setcookie('id', $user->id, 0);
-		setcookie('password', $user->password, 0);
+		if ($_POST['remember']) {
+			$cookieTime = time()+60*60*24*30;
+		} else {
+			$cookieTime = 0;
+		}
+		setcookie('id', $user->id, $cookieTime);
+		setcookie('password', $user->password, $cookieTime);
 		header('Location: feed.php');
 	}
 }

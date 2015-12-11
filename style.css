@@ -55,13 +55,17 @@ select:disabled {
 }
 
 input[type="submit"] {
-	padding: 2px 16px;
-	background-color: #222;
+	padding: 3px 16px;
+	background-color: #333;
 	background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, 0) 10px);
 }
 
 input[type="submit"]:hover, input[type="submit"]:focus {
-	background-color: #333;
+	background-color: #444;
+}
+
+input[type="submit"]:active {
+	background-color: #222;
 }
 
 fieldset {
@@ -491,7 +495,7 @@ h2 {
 	padding: 14px;
 }
 
-#login-email, #login-password {
+#login-form > input {
 	width: 180px;
 }
 
