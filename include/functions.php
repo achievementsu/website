@@ -13,8 +13,8 @@ require_once './config/config.php';
 // Подключаемся к БД
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if ($db->connect_errno) { // проверка соединения
-	printf('Соединение не удалось: %s\n', $db->connect_error);
-	exit();
+    printf('Соединение не удалось: %s\n', $db->connect_error);
+    exit();
 }
 
 include 'classes/MessageList.php';
@@ -30,18 +30,18 @@ $listMessages = new MessageList();
 /* А теперь непосредственно функционал */
 
 function generateRandomString($length = 10) {
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$charactersLength = strlen($characters);
-	$randomString = '';
-	for ($i = 0; $i < $length; $i++) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
-	}
-	return $randomString;
+    }
+    return $randomString;
 }
 
-require_once 'classes/user.php';
-require_once 'classes/login.php';
+require_once 'classes/User.php';
+require_once 'classes/Login.php';
 
-require_once 'classes/markup.php';
+require_once 'classes/Markup.php';
 
 ?>

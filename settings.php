@@ -4,7 +4,7 @@ require_once 'include/functions.php';
 
 global $login;
 if (!isset($login->user)) {
-	header('Location: index.php');
+    header('Location: index.php');
 }
 
 $title = 'Настройки учётной записи';
@@ -19,107 +19,107 @@ Markup::pageStart();
 
 <h1>Настройки</h1>
 <form class="inputform" method="POST">
-	<h2>Учётная запись</h2>
-	<div class="section">
-		<div class="setting">
-			<label class="setting-label" for="setting-account-email">Адрес электронной почты</label>
-			<div class="setting-control">
-				<input name="email" value="diamond00744@gmail.com">
-			</div>
-		</div>
-		<div class="setting">
-			<label class="setting-label" for="setting-account-timezone">Часовой пояс</label>
-			<div class="setting-control">
-				<select name="timezone" value="diamond00744@gmail.com">
-					<option selected value="Moscow" data-offset="10800">GMT+3 Moscow</option>
-				</select>
-			</div>
-		</div>
-		<div class="actions">
-			<input type="submit" value="Сохранить">
-		</div>
-	</div>
-	<h2>Пароль</h2>
-	<div class="section">
-		<div class="setting">
-			<label class="setting-label" for="setting-password-newpass">Новый пароль</label>
-			<div class="setting-control">
-				<input name="newpass" type="password" value="">
-			</div>
-		</div>
-		<div class="setting">
-			<label class="setting-label" for="setting-password-renewpass">Повторите пароль</label>
-			<div class="setting-control">
-				<input name="renewpass" type="password" value="">
-			</div>
-		</div>
-		<div class="setting">
-			<label class="setting-label" for="setting-password-currentpass">Старый пароль</label>
-			<div class="setting-control">
-				<input name="currentpass" type="password" value="">
-			</div>
-		</div>
-		<div class="actions">
-			<input type="submit" name="save" value="Сохранить">
-		</div>
-	</div>
-	<h2>Доступ и конфиденциальность</h2>
-	<div class="section">
-		<div class="note">
-			Вы можете выбрать, какой системы Вы хотите придерживаться.
-			<ul>
-				<li>
-					Система личного дневника предполагает, что Ваши достижения не будут видны никому кроме Вас.
-				</li>
-				<li>
-					Система друзей предполагает доступ к Вашим достижениям только тем людям, которые добавили Вас и которых вместе с этим добавили Вы.
-				</li>
-				<li>
-					Система подписчиков предполагает, что любой может просматривать Ваши достижения, а также подписываться на Вас для того, чтобы видеть Ваши достижения в своей ленте обновлений.
-				</li>
-			</ul>
-			Просьба учитывать, что подписка на человека равна отправке заявки в друзья, поэтому если Вы подписываетесь на человека, то Вы потенциально открываете ему доступ к своим достижениям.
-		</div>
-		<fieldset class="setting">
-			<legend class="setting-label">Мои достижения могут видеть</legend>
-			<div class="setting-control">
-				<label>
-					<input type="radio" name="access" value="me">
-					никто, лишь только я (система личного дневника)
-				</label>
-				<label>
-					<input type="radio" name="access" value="friends">
-					только избранные (система друзей)
-				</label>
-				<label>
-					<input type="radio" checked name="access" value="all">
-					все (система подписчиков)
-				</label>
-			</div>
-		</fieldset>
-		<div class="actions">
-			<input type="submit" name="save" value="Сохранить">
-		</div>
-	</div>
-	<h2>Уведомления</h2>
-	<div class="section">
-		<fieldset class="setting">
-			<legend class="setting-label">Присылать письмо, когда</legend>
-			<div class="setting-control">
-				<label>
-					<input type="checkbox" checked name="notification" value="achievement">
-					мне приходит достижение
-				</label>
-				<label>
-					<input type="checkbox" checked name="notification" value="friend">
-					меня добавили в друзья
-				</label>
-			</div>
-		</fieldset>
-		<div class="actions">
-			<input type="submit" name="save" value="Сохранить">
-		</div>
-	</div>
+    <h2>Учётная запись</h2>
+    <div class="section">
+        <div class="setting">
+            <label class="setting-label" for="setting-account-email">Адрес электронной почты</label>
+            <div class="setting-control">
+                <input name="email" value="diamond00744@gmail.com">
+            </div>
+        </div>
+        <div class="setting">
+            <label class="setting-label" for="setting-account-timezone">Часовой пояс</label>
+            <div class="setting-control">
+                <select name="timezone" value="diamond00744@gmail.com">
+                    <option selected value="Moscow" data-offset="10800">GMT+3 Moscow</option>
+                </select>
+            </div>
+        </div>
+        <div class="actions">
+            <input type="submit" value="Сохранить">
+        </div>
+    </div>
+    <h2>Пароль</h2>
+    <div class="section">
+        <div class="setting">
+            <label class="setting-label" for="setting-password-newpass">Новый пароль</label>
+            <div class="setting-control">
+                <input name="newpass" type="password" value="">
+            </div>
+        </div>
+        <div class="setting">
+            <label class="setting-label" for="setting-password-renewpass">Повторите пароль</label>
+            <div class="setting-control">
+                <input name="renewpass" type="password" value="">
+            </div>
+        </div>
+        <div class="setting">
+            <label class="setting-label" for="setting-password-currentpass">Старый пароль</label>
+            <div class="setting-control">
+                <input name="currentpass" type="password" value="">
+            </div>
+        </div>
+        <div class="actions">
+            <input type="submit" name="save" value="Сохранить">
+        </div>
+    </div>
+    <h2>Доступ и конфиденциальность</h2>
+    <div class="section">
+        <div class="note">
+            Вы можете выбрать, какой системы Вы хотите придерживаться.
+            <ul>
+                <li>
+                    Система личного дневника предполагает, что Ваши достижения не будут видны никому кроме Вас.
+                </li>
+                <li>
+                    Система друзей предполагает доступ к Вашим достижениям только тем людям, которые добавили Вас и которых вместе с этим добавили Вы.
+                </li>
+                <li>
+                    Система подписчиков предполагает, что любой может просматривать Ваши достижения, а также подписываться на Вас для того, чтобы видеть Ваши достижения в своей ленте обновлений.
+                </li>
+            </ul>
+            Просьба учитывать, что подписка на человека равна отправке заявки в друзья, поэтому если Вы подписываетесь на человека, то Вы потенциально открываете ему доступ к своим достижениям.
+        </div>
+        <fieldset class="setting">
+            <legend class="setting-label">Мои достижения могут видеть</legend>
+            <div class="setting-control">
+                <label>
+                    <input type="radio" name="access" value="me">
+                    никто, лишь только я (система личного дневника)
+                </label>
+                <label>
+                    <input type="radio" name="access" value="friends">
+                    только избранные (система друзей)
+                </label>
+                <label>
+                    <input type="radio" checked name="access" value="all">
+                    все (система подписчиков)
+                </label>
+            </div>
+        </fieldset>
+        <div class="actions">
+            <input type="submit" name="save" value="Сохранить">
+        </div>
+    </div>
+    <h2>Уведомления</h2>
+    <div class="section">
+        <fieldset class="setting">
+            <legend class="setting-label">Присылать письмо, когда</legend>
+            <div class="setting-control">
+                <label>
+                    <input type="checkbox" checked name="notification" value="achievement">
+                    мне приходит достижение
+                </label>
+                <label>
+                    <input type="checkbox" checked name="notification" value="friend">
+                    меня добавили в друзья
+                </label>
+            </div>
+        </fieldset>
+        <div class="actions">
+            <input type="submit" name="save" value="Сохранить">
+        </div>
+    </div>
 </form>
 
 <?php require_once 'include/static/footer.php'; ?>
