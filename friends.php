@@ -19,30 +19,18 @@ if (!$_POST['search'] && $_GET['act'] && $_GET['id'] && $_GET['id'] != $login->u
 		if ($_GET['act'] == 'add') {
 			$db->query('INSERT INTO achi_friends (subscriber, subscribant) VALUES(' . $login->user->id . ', ' . $user->id . ')');
 			if (User::isFriends($login->user->id, $user->id)) {
-				$listMessages[] = array(
-					'type' => 'notify',
-					'description' => 'Вы и ' . $user->username . ' теперь друзья!'
-				);
+				$listMessages->addNotify('Вы и ' . $user->username . ' теперь друзья!');
 			} else {
-				$listMessages[] = array(
-					'type' => 'notify',
-					'description' => 'Вы отправили предложение дружбы ' . $user->username . '.'
-				);
+				$listMessages->addNotify('Вы отправили предложение дружбы ' . $user->username . '.');
 			}
 		}
 		if ($_GET['act'] == 'delete') {
 			$wasFriends = User::isFriends($login->user->id, $user->id);
 			$db->query('DELETE FROM achi_friends WHERE subscriber = ' . $login->user->id . ' AND subscribant = ' . $_GET['id'] . ' LIMIT 1');
 			if ($wasFriends) {
-				$listMessages[] = array(
-					'type' => 'notify',
-					'description' => 'Вы с ' . $user->username . ' больше не дружите.'
-				);
+				$listMessages->addNotify('Вы больше не дружите с ' . $user->username . '.');
 			} else {
-				$listMessages[] = array(
-					'type' => 'notify',
-					'description' => 'Заявка дружбы к ' . $user->username . ' отменена.'
-				);
+				$listMessages->addNotify('Заявка дружбы к ' . $user->username . ' отменена.');
 			}
 		}
 	}

@@ -17,13 +17,15 @@ if ($db->connect_errno) { // проверка соединения
 	exit();
 }
 
+include 'classes/MessageList.php';
+use AchievementSu\MessageList;
 /**
  * Список массивов с всплывающими сообщениями
  * title - необязательная часть, которая будет выделена жирным в начале сообщения
  * type - тип сообщения (error, success, notify, white)
  * description - основной текст
  */
-$listMessages = array();
+$listMessages = new MessageList();
 
 /* А теперь непосредственно функционал */
 
@@ -32,7 +34,7 @@ function generateRandomString($length = 10) {
 	$charactersLength = strlen($characters);
 	$randomString = '';
 	for ($i = 0; $i < $length; $i++) {
-  	$randomString .= $characters[rand(0, $charactersLength - 1)];
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
 	}
 	return $randomString;
 }

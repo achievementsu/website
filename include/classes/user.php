@@ -27,7 +27,7 @@ class User
      * @param $id
      */
 	function __construct($id) {
-		global $db, $listMessages;
+		global $db;
 
 		$query = 'SELECT * FROM achi_users WHERE id=' . $id;
 		if ($data = $db->query($query)->fetch_assoc()) {
@@ -73,61 +73,44 @@ class User
 		global $db, $listMessages;
 
 		if (strlen($username) > 32) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Слишком длинное имя пользователя.'
-			);
+			$listMessages->addError('Слишком длинное имя пользователя.');
 			return false;
 		}
 		if (!preg_match("|^[-0-9a-z_\.\s]+$|i", $username)) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Имя пользователя содержит недопустимые символы.'
-			);
+			$listMessages->addError('Имя пользователя содержит недопустимые символы.');
 			return false;
 		}
 		if (strlen($email) > 50 || !preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Пожалуйста, введите корректный E-mail.'
-			);
+			$listMessages->addError('Пожалуйста, введите корректный E-mail.');
 			return false;
 		}
 		if (strlen($password) < 6) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Пароль должен содержать как минимум 6 символов.'
-			);
+			$listMessages->addError('Пароль должен содержать как минимум 6 символов.');
 			return false;
 		}
 
 		$data = $db->query('SELECT * FROM achi_users WHERE email = "' . $email . '"');
 		if ($data->num_rows) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Данный почтовый ящик уже занят. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
-			);
+			$listMessages->addError('Данный почтовый ящик уже занят. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.');
 			return false;
 		}
 		$data = $db->query('SELECT * FROM achi_users WHERE username = "' . $username . '"');
 		if ($data->num_rows) {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Данное имя пользователя уже занято. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.'
-			);
+			$listMessages->addError('Данное имя пользователя уже занято. Возможно, вы уже зарегистрировались - попробуйте войти на сайт, или же восстановить пароль, если Вы его забыли.');
 			return false;
 		}
 
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$query = 'INSERT INTO achi_users (username, email, password, email_confirmcode, registration_time) VALUES("' . $username . '", "' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
-		if ($db->query($query)) {
-			$listMessages[] = array(
-				'type' => 'success',
-				'description' => 'Поздравляем с успешной регистрацией. Добро пожаловать на Achievement.su!'
-			);
-			return true;
+		$query = 'INSERT INTO achi_users (username, email, password, email_confirmcode, registration_time) '
+			   . 'VALUES("' . $username . '", "' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
+        $writeSuccess = $db->query($query);
+		if (!$writeSuccess) {
+			$listMessages->addError('Не удалось добавить нового пользователя в базу данных. Пожалуйста, свяжитесь с администрацией.');
+            return false;
 		}
-		return false;
+
+        $listMessages->addSuccess('Поздравляем с успешной регистрацией. Добро пожаловать на Achievement.su!');
+        return true;
 	}
 
 	/**
@@ -143,10 +126,7 @@ class User
 		if (($data = $db->query($query)->fetch_assoc()) && (password_verify($password, $data['password']))) {
 			return $data['id'];
 		} else {
-			$listMessages[] = array(
-				'type' => 'error',
-				'description' => 'Введены некорректные данные входа. Повторите попытку.'
-			);
+			$listMessages->addError('Введены некорректные данные входа. Повторите попытку.');
 			return -1;
 		}
 	}
@@ -163,6 +143,12 @@ class User
 		return $db->query($query)->num_rows;
 	}
 
+    /**
+	 * Являются ли друзьми двое пользователей.
+     * @param $user1 int Идентификатор первого.
+     * @param $user2 int Идентификатор второго.
+     * @return bool Результат проверки.
+     */
 	public static function isFriends($user1, $user2) {
 		return User::isSubscribers($user1, $user2) && User::isSubscribers($user2, $user1);
 	}

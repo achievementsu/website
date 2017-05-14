@@ -13,10 +13,7 @@ if ($_POST['register']) {
 		User::registerUser($_POST['username'], $_POST['email'], $_POST['password']);
 	} else {
 		global $listMessages;
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Пароли не совпадают.'
-		);
+		$listMessages->addError('Пароли не совпадают.');
 	}
 }
 

@@ -23,10 +23,10 @@ class Markup
 
 	/* Функция вставки шапки сайта */
 	public static function pageStart() {
-
 		require_once '/../static/header.php';
 
-		self::showMessages();
+        global $listMessages;
+        $listMessages->printMessages();
 	}
 
 	public static function getHeaderMenu() {
@@ -46,20 +46,6 @@ class Markup
 				</ul>
 			</nav>
 		<?php
-		}
-	}
-
-	private static function showMessages() {
-		global $listMessages;
-
-		foreach ($listMessages as $msg) {
-			if ($msg['description'] && $msg['type']) {
-				echo '<div class="section info-box info-' . $msg['type'] . '-box">';
-				if ($msg['title']) {
-					echo '<b>' . $msg['title'] . '.</b> ';
-				}
-				echo $msg['description'] . '</div>';
-			}
 		}
 	}
 

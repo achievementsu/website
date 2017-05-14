@@ -54,11 +54,7 @@ $showSidebar = true;
 if (!isset($user->id)) {
 	$title = 'Нет такого профиля';
 	global $listMessages;
-	$listMessages[] = array(
-		'type' => 'error',
-		'title' => 'Ошибка',
-		'description' => 'Пользователя с данным ID не существует :('
-	);
+	$listMessages->addError('Пользователя с данным ID не существует :(', 'Ошибка');
 	Markup::pageStart();
 } else {
 	Markup::pageStart();

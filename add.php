@@ -19,10 +19,7 @@ function sendAchievement() {
 
 	// Валидность получателя
 	if (!($_POST['to'] == $login->user->id || User::isFriends($login->user->id, $_POST['to']))) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Получатель достижения должен являться Вашим другом или Вами.'
-		);
+		$listMessages->addError('Получатель достижения должен являться Вашим другом или Вами.');
 		return false;
 	}
 
@@ -31,33 +28,21 @@ function sendAchievement() {
 		$_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
 	}
 	if ($_POST['time'] && !strtotime($_POST['time'])) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Дата указана в неприемлемом формате. Рекомендуемый формат: ГГГГ-ММ-ДД ЧЧ:ММ:СС'
-		);
+		$listMessages->addError('Дата указана в неприемлемом формате. Рекомендуемый формат: ГГГГ-ММ-ДД ЧЧ:ММ:СС');
 		return false;
 	}
 	if ($_POST['time'] && strtotime($_POST['time']) && (strtotime($_POST['time'])-($login->user->timezone * 3600) > time())) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Вы не можете отправлять достижения будущего :)<br>Время было возвращено на круги своя.'
-		);
+		$listMessages->addError('Вы не можете отправлять достижения будущего :)<br>Время было возвращено на круги своя.');
 		$_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
 		return false;
 	}
 
 	if (!$_POST['name']) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Необходимо ввести название достижения.'
-		);
+		$listMessages->addError('Необходимо ввести название достижения.');
 		return false;
 	}
 	if (!$_POST['description']) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Необходимо описать достижение.'
-		);
+		$listMessages->addError('Необходимо описать достижение.');
 		return false;
 	}
 
@@ -69,37 +54,25 @@ function sendAchievement() {
 	}
 
 	if (!isset($_FILES['icon']['error']) || is_array($_FILES['icon']['error'])) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: неподобающие параметры...'
-		);
+		$listMessages->addError('Ошибка загрузки иконки: неподобающие параметры...');
 		return false;
 	}
 	switch ($_FILES['icon']['error']) {
 		case UPLOAD_ERR_OK: break;
-		case UPLOAD_ERR_NO_FILE: $listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: файл не был отправлен...'
-		);
-		return false;
+		case UPLOAD_ERR_NO_FILE:
+		    $listMessages->addError('Ошибка загрузки иконки: файл не был отправлен...');
+		    return false;
 		case UPLOAD_ERR_INI_SIZE:
-		case UPLOAD_ERR_FORM_SIZE: $listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: превышен максимальный размер...'
-		);
-		return false;
-		default: $listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: неизвестная ошибка...'
-		);
+		case UPLOAD_ERR_FORM_SIZE:
+		    $listMessages->addError('Ошибка загрузки иконки: превышен максимальный размер...');
+		    return false;
+		default:
+		    $listMessages->addError('Ошибка загрузки иконки: неизвестная ошибка...');
 		return false;
 	}
 
 	if ($_FILES['icon']['size'] > 10000000) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: превышен максимальный размер...'
-		);
+		$listMessages->addError('Ошибка загрузки иконки: превышен максимальный размер...');
 		return false;
 	}
 
@@ -110,11 +83,8 @@ function sendAchievement() {
 		case 'image/png': $ext = 'png'; break;
 		case 'image/gif': $ext = 'gif'; break;
 		default:
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: файл не является изображением.'
-		);
-		return false;
+		    $listMessages->addError('Ошибка загрузки иконки: файл не является изображением.');
+		    return false;
 	}
 
 	// http://php.net/manual/ru/features.file-upload.php
@@ -128,10 +98,7 @@ function sendAchievement() {
 		),
 		true
 	)) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки файла: формат файла неприемлем...'
-		);
+		$listMessages->addError('Ошибка загрузки файла: формат файла неприемлем...');
 		return false;
 	}*/
 
@@ -143,10 +110,7 @@ function sendAchievement() {
     $filePath = 'storage/icons/' . $fileName;
 
 	if (!move_uploaded_file($_FILES['icon']['tmp_name'], $filePath)) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: не удалось переместить загруженный файл...'
-		);
+		$listMessages->addError('Ошибка загрузки иконки: не удалось переместить загруженный файл...');
 		return false;
 	}
 
@@ -157,18 +121,17 @@ function sendAchievement() {
 	$timeset = date('Y-m-d H:i:s', strtotime($_POST['time'])-($login->user->timezone * 3600));
 	$timesent = date('Y-m-d H:i:s', time());
 
-	$query = 'INSERT INTO achi_achievements (`from`, `to`, `status`, `name`, `description`, `color`, `time_sent`, `time_set`, `level`, `image`) ';
-	$query .= 'VALUES("' . $login->user->id . '", "' . $_POST['to'] . '", "1", "' . $_POST['name'] . '", "' . $_POST['description'] . '", ';
-	$query .= '"' . $_POST['color'] . '", "' . $timesent . '", "' . $timeset . '", "' . $_POST['level'] . '", "' . $fileName . '")';
-	if ($db->query($query)) {
-		$listMessages[] = array(
-			'type' => 'success',
-			'description' => 'Достижение успешно отправлено!'
-		);
-		return true;
+	$query = 'INSERT INTO achi_achievements (`from`, `to`, `status`, `name`, `description`, `color`, `time_sent`, `time_set`, `level`, `image`) '
+	       . 'VALUES("' . $login->user->id . '", "' . $_POST['to'] . '", "1", "' . $_POST['name'] . '", "' . $_POST['description'] . '", '
+	       . '"' . $_POST['color'] . '", "' . $timesent . '", "' . $timeset . '", "' . $_POST['level'] . '", "' . $fileName . '")';
+	$writeSuccess = $db->query($query);
+	if (!$writeSuccess) {
+	    $listMessages->addError('Не удалось записать Ваше достижение в базу данных. Пожалуйста, свяжитесь с администрацией.');
+        return false;
 	}
 
-	return false;
+    $listMessages->addSuccess('Достижение успешно отправлено!');
+    return true;
 }
 
 function showSendList() {
