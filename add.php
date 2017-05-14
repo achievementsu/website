@@ -2,6 +2,9 @@
 
 require_once 'include/functions.php';
 
+include 'include/ext/ImageResize.php';
+use \Eventviva\ImageResize;
+
 global $login;
 if (!isset($login->user)) {
 	header('Location: index.php');
@@ -65,10 +68,7 @@ function sendAchievement() {
 		$_POST['color'] = '000000';
 	}
 
-	if (
-	!isset($_FILES['icon']['error']) ||
-	is_array($_FILES['icon']['error'])
-	) {
+	if (!isset($_FILES['icon']['error']) || is_array($_FILES['icon']['error'])) {
 		$listMessages[] = array(
 			'type' => 'error',
 			'description' => 'Ошибка загрузки иконки: неподобающие параметры...'
@@ -95,7 +95,7 @@ function sendAchievement() {
 		return false;
 	}
 
-	if ($_FILES['icon']['size'] > 100000) {
+	if ($_FILES['icon']['size'] > 10000000) {
 		$listMessages[] = array(
 			'type' => 'error',
 			'description' => 'Ошибка загрузки иконки: превышен максимальный размер...'
@@ -113,13 +113,6 @@ function sendAchievement() {
 		$listMessages[] = array(
 			'type' => 'error',
 			'description' => 'Ошибка загрузки иконки: файл не является изображением.'
-		);
-		return false;
-	}
-	if ($size[0] != 64 || $size[1] != 64) {
-		$listMessages[] = array(
-			'type' => 'error',
-			'description' => 'Ошибка загрузки иконки: размер изображения отличается от 64*64.'
 		);
 		return false;
 	}
@@ -147,16 +140,19 @@ function sendAchievement() {
 		generateRandomString(20),
 		$ext
 	);
+    $filePath = 'storage/icons/' . $fileName;
 
-	if (!move_uploaded_file(
-		$_FILES['icon']['tmp_name'], 'storage/icons/' . $fileName
-	)) {
+	if (!move_uploaded_file($_FILES['icon']['tmp_name'], $filePath)) {
 		$listMessages[] = array(
 			'type' => 'error',
 			'description' => 'Ошибка загрузки иконки: не удалось переместить загруженный файл...'
 		);
 		return false;
 	}
+
+    $icon = new ImageResize($filePath);
+    $icon->crop(64, 64);
+    $icon->save($filePath);
 
 	$timeset = date('Y-m-d H:i:s', strtotime($_POST['time'])-($login->user->timezone * 3600));
 	$timesent = date('Y-m-d H:i:s', time());
@@ -184,9 +180,9 @@ function showSendList() {
 	}
 	echo '>' . $login->user->username . "</option>\n";
 
-	$query = 'SELECT id, username FROM achi_users WHERE';
-	$query .= '(achi_users.id IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $login->user->id . ')) AND';
-	$query .= '(achi_users.id IN (SELECT subscribant FROM achi_friends WHERE subscriber = ' . $login->user->id . '))';
+    $query = 'SELECT id, username FROM achi_users WHERE'
+           . '(achi_users.id IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $login->user->id . ')) AND'
+           . '(achi_users.id IN (SELECT subscribant FROM achi_friends WHERE subscriber = ' . $login->user->id . '))';
 
 	$result = $db->query($query);
 	while ($data = $result->fetch_assoc()) {
@@ -230,7 +226,7 @@ Markup::pageStart();
 				</div>
 			</div>
 			<div class="setting">
-				<label class="setting-label" for="time">Достижение получил</label>
+				<label class="setting-label" for="time">Дата и время получения</label>
 				<div class="setting-control">
 					<input name="time" type="datetime" value="<?php echo $_POST['time']; ?>">
 				</div>
@@ -276,7 +272,7 @@ Markup::pageStart();
 		<div class="setting">
 			<label class="setting-label" for="icon">Загрузите иконку достижения<br>(размер изображения: 64*64)</label>
 			<div class="setting-control">
-				<input type="hidden" name="MAX_FILE_SIZE" value="100000">
+				<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
 				<input name="icon" type="file" required>
 			</div>
 		</div>
