@@ -87,8 +87,4 @@ Markup::pageStart();
     </p>
 </div>
 
-<?php
-
-Markup::pageEnd();
-
-?>
+<?php Markup::pageEnd(); ?>

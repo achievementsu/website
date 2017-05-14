@@ -19,7 +19,7 @@
                 <?php
                 global $showSidebar;
                 if ($showSidebar == true) {
-                    require 'sidebar.php';
+                    require 'MarkupSidebar.php';
                     echo '<div id="content-main" class="content-main-sidebar">';
                 } else {
                     echo '<div id="content-main" class="content-main-wide">';

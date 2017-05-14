@@ -233,7 +233,7 @@ Markup::pageStart();
             </div>
         </div>
         <div class="setting">
-            <label class="setting-label" for="icon">Загрузите иконку достижения<br>(размер изображения: 64*64)</label>
+            <label class="setting-label" for="icon">Загрузите иконку достижения</label>
             <div class="setting-control">
                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                 <input name="icon" type="file" required>
@@ -244,4 +244,4 @@ Markup::pageStart();
         </div>
 </form>
 
-<?php require_once 'include/static/footer.php'; ?>
+<?php Markup::pageEnd(); ?>

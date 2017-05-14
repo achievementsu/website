@@ -92,5 +92,5 @@ if (!isset($user->id)) {
 
 <?php
 }
-require_once 'include/static/footer.php';
+Markup::pageEnd();
 ?>

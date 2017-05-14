@@ -158,5 +158,7 @@ if ($_POST['search'] && $_POST['username']) {
     <?php
     }
 }
-require_once 'include/static/footer.php';
+
+Markup::pageEnd();
+
 ?>

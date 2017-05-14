@@ -125,4 +125,4 @@ Markup::pageStart();
     </div>
 </form>
 
-<?php require_once 'include/static/footer.php'; ?>
+<?php Markup::pageEnd(); ?>

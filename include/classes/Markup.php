@@ -23,7 +23,7 @@ class Markup
 
     /* Функция вставки шапки сайта */
     public static function pageStart() {
-        require_once '/../static/header.php';
+        require_once 'MarkupHeader.php';
 
         global $listMessages;
         $listMessages->printMessages();
@@ -51,7 +51,7 @@ class Markup
 
     /* Функция вставки подвала сайта */
     public static function pageEnd() {
-        require_once '/../static/footer.php';
+        require_once 'MarkupFooter.php';
     }
 }
 
