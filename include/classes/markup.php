@@ -1,9 +1,16 @@
 <?php
 
-/* Класс, отвечающий за общую разметку страниц */
+/**
+ * Class Markup.
+ * Класс, отвечающий за общую разметку страниц.
+ */
 class Markup
 {
-	/* Функция подсветки ссылки активной страницы в шапке */
+    /**
+     * Функция подсветки ссылки активной страницы в шапке.
+     * @param $link int Идентификатор проверяемой ссылки.
+     * @return null|string Атрибут class, если требуется.
+     */
 	private static function headerLinkBacklight($link) {
 		global $current_page;
 		if ($link == $current_page) {

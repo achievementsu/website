@@ -3,7 +3,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	font: 12px "PT Sans", "DejaVu Sans", Arial, Tahoma, sans-serif;
+	font: 14px "PT Sans", "DejaVu Sans", Arial, Tahoma, sans-serif;
 	color: #ccc;
 	background: #333;
 }
@@ -88,7 +88,7 @@ fieldset {
 	-webkit-filter: blur(4px) grayscale(100%) opacity(50%);
 	filter: blur(4px) grayscale(100%) opacity(50%);
 	transition-duration: .3s;
-	transition-property: filter -webkit-filter;
+	transition-property: filter, -webkit-filter;
 }
 
 #wrapper {
@@ -301,7 +301,7 @@ h2 {
 	width: 26px;
 	height: 26px;
 	padding: 4px;
-	box-sizing: padding-box;
+	box-sizing: border-box;
 	color: #99ee99;
 	font-size: 1.1em;
 	font-weight: bold;

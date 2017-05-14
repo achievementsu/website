@@ -1,6 +1,9 @@
 <?php
 
-/* Пользователь */
+/**
+ * Class User.
+ * Пользователь.
+ */
 class User
 {
 	public $id;
@@ -19,7 +22,10 @@ class User
 
 	public $avatar;
 
-	/* Конструктор класса по ID пользователя */
+    /**
+     * Конструктор класса User по ID пользователя.
+     * @param $id
+     */
 	function __construct($id) {
 		global $db, $listMessages;
 
@@ -164,6 +170,7 @@ class User
 	/**
 	 * Отправка подтверждения почтового ящика пользователю с указанным идентификатором
 	 * @param int $id Идентификатор пользователя
+	 * @return bool Успешность отправки
 	 */
 	public static function sendConfirmMail($id) {
 		global $db;

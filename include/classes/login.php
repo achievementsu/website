@@ -2,8 +2,15 @@
 
 require_once 'user.php';
 
+/**
+ * Class Login.
+ * Определяет текущего залогиненного пользователя.
+ */
 class Login
 {
+    /**
+     * @var User int|null Идентификатор текущего пользователя или NULL.
+     */
 	public $user;
 
 	function __construct() {
