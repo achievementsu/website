@@ -5,7 +5,7 @@ header('Content-Type: text/html; charset=utf-8');
 date_default_timezone_set("UTC");
 
 // Работа с паролями на старых версиях PHP
-require_once 'include/password.php';
+require_once 'ext/password.php';
 
 // Импортируем конфигурацию
 require_once './config/config.php';
@@ -43,5 +43,3 @@ require_once 'classes/User.php';
 require_once 'classes/Login.php';
 
 require_once 'classes/Markup.php';
-
-?>
