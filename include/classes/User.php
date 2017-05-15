@@ -1,5 +1,7 @@
 <?php
 
+namespace AchievementSu;
+
 /**
  * Class User.
  * Пользователь.
@@ -102,7 +104,7 @@ class User
 
         $password = password_hash($password, PASSWORD_DEFAULT);
         $query = 'INSERT INTO achi_users (username, email, password, email_confirmcode, registration_time) '
-               . 'VALUES("' . $username . '", "' . $email . '", "' . $password . '", "' . generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
+               . 'VALUES("' . $username . '", "' . $email . '", "' . $password . '", "' . StringHelpers::generateRandomString(10) . '", "' . date('Y.m.d H:i:s') . '")';
         $writeSuccess = $db->query($query);
         if (!$writeSuccess) {
             $listMessages->addError('Не удалось добавить нового пользователя в базу данных. Пожалуйста, свяжитесь с администрацией.');

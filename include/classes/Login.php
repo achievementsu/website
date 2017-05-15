@@ -1,5 +1,7 @@
 <?php
 
+namespace AchievementSu;
+
 require_once 'User.php';
 
 /**
@@ -25,7 +27,3 @@ class Login
         }
     }
 }
-
-$login = new Login();
-
-?>

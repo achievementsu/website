@@ -1,6 +1,8 @@
 <?php
 
-require_once 'include/functions.php';
+namespace AchievementSu;
+
+require_once 'include/init.php';
 
 include 'include/ext/ImageResize.php';
 use \Eventviva\ImageResize;
@@ -104,7 +106,7 @@ function sendAchievement() {
 
     $fileName = sprintf('%s.%s',
         //sha1_file($_FILES['icon']['tmp_name']),
-        generateRandomString(20),
+        StringHelpers::generateRandomString(20),
         $ext
     );
     $filePath = 'storage/icons/' . $fileName;

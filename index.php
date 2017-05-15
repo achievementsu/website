@@ -1,6 +1,8 @@
 <?php
 
-require_once 'include/functions.php';
+namespace AchievementSu;
+
+require_once 'include/init.php';
 
 global $_POST;
 if (isset($_POST['login'])) {

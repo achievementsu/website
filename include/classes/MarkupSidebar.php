@@ -1,3 +1,5 @@
+<?php namespace AchievementSu; ?>
+
 <div id="content-sidebar">
 
 <?php

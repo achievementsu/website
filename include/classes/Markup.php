@@ -1,5 +1,7 @@
 <?php
 
+namespace AchievementSu;
+
 /**
  * Class Markup.
  * Класс, отвечающий за общую разметку страниц.

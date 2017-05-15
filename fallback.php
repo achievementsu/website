@@ -1,5 +1,7 @@
 <?php
 
+namespace AchievementSu;
+
 $path = ltrim($_SERVER['REQUEST_URI'], '/'); //Обрезка начального слеша(-ей)
 $elements = explode('/', $path); //Делим путь по слешам
 

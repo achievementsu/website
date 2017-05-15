@@ -1,3 +1,4 @@
+<?php namespace AchievementSu; ?>
 <!DOCTYPE html>
 <html>
 <head>

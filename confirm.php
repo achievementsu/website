@@ -1,6 +1,8 @@
 <?php
 
-require_once 'include/functions.php';
+namespace AchievementSu;
+
+require_once 'include/init.php';
 
 global $_GET, $listMessages;
 if ((isset($_GET['id'])) && ($_GET['id'] > 0) && ($_GET['code'])) {
