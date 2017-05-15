@@ -13,7 +13,7 @@ class Login
     /**
      * @var User int|null Идентификатор текущего пользователя или NULL.
      */
-    public $user;
+    private $user;
 
     function __construct() {
         $this->user = NULL;
@@ -25,5 +25,19 @@ class Login
                 $this->user = new User($_COOKIE['id']);
             }
         }
+    }
+
+    /**
+     * @return bool Залогинен ли текущий пользователь.
+     */
+    public function isLoggedIn() {
+        return isset($this->user);
+    }
+
+    /**
+     * @return User Возвращает текущего пользователя.
+     */
+    public function getUser() {
+        return $this->user;
     }
 }

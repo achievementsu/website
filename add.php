@@ -3,39 +3,39 @@
 namespace AchievementSu;
 
 require_once 'include/init.php';
-
-include 'include/ext/ImageResize.php';
+require_once 'include/ext/ImageResize.php';
 use \Eventviva\ImageResize;
 
 global $login;
-if (!isset($login->user)) {
+if (!$login->isLoggedIn()) {
     header('Location: index.php');
 }
+$currentUser = $login->getUser();
 
 $title = 'Добавить достижение';
 $current_page = 'add';
 $showSidebar = true;
 
 function sendAchievement() {
-    global $db, $login, $listMessages;
+    global $db, $currentUser, $listMessages;
 
     // Валидность получателя
-    if (!($_POST['to'] == $login->user->id || User::isFriends($login->user->id, $_POST['to']))) {
+    if (!($_POST['to'] == $currentUser->id || User::isFriends($currentUser->id, $_POST['to']))) {
         $listMessages->addError('Получатель достижения должен являться Вашим другом или Вами.');
         return false;
     }
 
     // Разбор даты
     if (!$_POST['time']) {
-        $_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
+        $_POST['time'] = date('Y-m-d H:i:s', time()+($currentUser->timezone * 3600));
     }
     if ($_POST['time'] && !strtotime($_POST['time'])) {
         $listMessages->addError('Дата указана в неприемлемом формате. Рекомендуемый формат: ГГГГ-ММ-ДД ЧЧ:ММ:СС');
         return false;
     }
-    if ($_POST['time'] && strtotime($_POST['time']) && (strtotime($_POST['time'])-($login->user->timezone * 3600) > time())) {
+    if ($_POST['time'] && strtotime($_POST['time']) && (strtotime($_POST['time'])-($currentUser->timezone * 3600) > time())) {
         $listMessages->addError('Вы не можете отправлять достижения будущего :)<br>Время было возвращено на круги своя.');
-        $_POST['time'] = date('Y-m-d H:i:s', time()+($login->user->timezone * 3600));
+        $_POST['time'] = date('Y-m-d H:i:s', time()+($currentUser->timezone * 3600));
         return false;
     }
 
@@ -120,11 +120,11 @@ function sendAchievement() {
     $icon->crop(64, 64);
     $icon->save($filePath);
 
-    $timeset = date('Y-m-d H:i:s', strtotime($_POST['time'])-($login->user->timezone * 3600));
+    $timeset = date('Y-m-d H:i:s', strtotime($_POST['time'])-($currentUser->timezone * 3600));
     $timesent = date('Y-m-d H:i:s', time());
 
     $query = 'INSERT INTO achi_achievements (`from`, `to`, `status`, `name`, `description`, `color`, `time_sent`, `time_set`, `level`, `image`) '
-           . 'VALUES("' . $login->user->id . '", "' . $_POST['to'] . '", "1", "' . $_POST['name'] . '", "' . $_POST['description'] . '", '
+           . 'VALUES("' . $currentUser->id . '", "' . $_POST['to'] . '", "1", "' . $_POST['name'] . '", "' . $_POST['description'] . '", '
            . '"' . $_POST['color'] . '", "' . $timesent . '", "' . $timeset . '", "' . $_POST['level'] . '", "' . $fileName . '")';
     $writeSuccess = $db->query($query);
     if (!$writeSuccess) {
@@ -137,17 +137,17 @@ function sendAchievement() {
 }
 
 function showSendList() {
-    global $db, $login;
+    global $db, $currentUser;
     echo '<select name="to" required>';
-    echo '<option value="' . $login->user->id . '"';
+    echo '<option value="' . $currentUser->id . '"';
     if (!$_GET['id']) {
         echo ' selected';
     }
-    echo '>' . $login->user->username . "</option>\n";
+    echo '>' . $currentUser->username . "</option>\n";
 
     $query = 'SELECT id, username FROM achi_users WHERE'
-           . '(achi_users.id IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $login->user->id . ')) AND'
-           . '(achi_users.id IN (SELECT subscribant FROM achi_friends WHERE subscriber = ' . $login->user->id . '))';
+           . '(achi_users.id IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $currentUser->id . ')) AND'
+           . '(achi_users.id IN (SELECT subscribant FROM achi_friends WHERE subscriber = ' . $currentUser->id . '))';
 
     $result = $db->query($query);
     while ($data = $result->fetch_assoc()) {
@@ -163,7 +163,7 @@ function showSendList() {
 
 if (!$_POST['to']) {
     if (!($_POST['to'] = $_GET['id'])) {
-        $_POST['to'] = $login->user->id;
+        $_POST['to'] = $currentUser->id;
     }
 }
 if ($_POST['level'] > 10) {

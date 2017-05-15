@@ -5,7 +5,7 @@ namespace AchievementSu;
 require_once 'include/init.php';
 
 global $login;
-if (isset($login->user)) {
+if ($login->isLoggedIn()) {
     header('Location: feed.php');
 }
 

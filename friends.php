@@ -5,30 +5,31 @@ namespace AchievementSu;
 require_once 'include/init.php';
 
 global $login;
-if (!isset($login->user)) {
+if (!$login->isLoggedIn()) {
     header('Location: index.php');
 }
+$currentUser = $login->getUser();
 
 $title = 'Друзья';
 $current_page = 'friends';
 $showSidebar = true;
 
-if (!$_POST['search'] && $_GET['act'] && $_GET['id'] && $_GET['id'] != $login->user->id) {
+if (!$_POST['search'] && $_GET['act'] && $_GET['id'] && $_GET['id'] != $currentUser->id) {
     global $listMessages;
     $user = new User($_GET['id']);
     if (isset($user->id)) {
         global $db;
         if ($_GET['act'] == 'add') {
-            $db->query('INSERT INTO achi_friends (subscriber, subscribant) VALUES(' . $login->user->id . ', ' . $user->id . ')');
-            if (User::isFriends($login->user->id, $user->id)) {
+            $db->query('INSERT INTO achi_friends (subscriber, subscribant) VALUES(' . $currentUser->id . ', ' . $user->id . ')');
+            if (User::isFriends($currentUser->id, $user->id)) {
                 $listMessages->addNotify('Вы и ' . $user->username . ' теперь друзья!');
             } else {
                 $listMessages->addNotify('Вы отправили предложение дружбы ' . $user->username . '.');
             }
         }
         if ($_GET['act'] == 'delete') {
-            $wasFriends = User::isFriends($login->user->id, $user->id);
-            $db->query('DELETE FROM achi_friends WHERE subscriber = ' . $login->user->id . ' AND subscribant = ' . $_GET['id'] . ' LIMIT 1');
+            $wasFriends = User::isFriends($currentUser->id, $user->id);
+            $db->query('DELETE FROM achi_friends WHERE subscriber = ' . $currentUser->id . ' AND subscribant = ' . $_GET['id'] . ' LIMIT 1');
             if ($wasFriends) {
                 $listMessages->addNotify('Вы больше не дружите с ' . $user->username . '.');
             } else {
@@ -39,10 +40,10 @@ if (!$_POST['search'] && $_GET['act'] && $_GET['id'] && $_GET['id'] != $login->u
 }
 
 function showUserBlock($id) {
-    global $login;
+    global $currentUser;
     $user = new User($id);
-    $subByLoggedIn = User::isSubscribers($login->user->id, $user->id);
-    $subOnLoggedIn = User::isSubscribers($user->id, $login->user->id);
+    $subByLoggedIn = User::isSubscribers($currentUser->id, $user->id);
+    $subOnLoggedIn = User::isSubscribers($user->id, $currentUser->id);
     ?>
     <div class="userline">
         <div class="avatar">
@@ -98,7 +99,7 @@ if ($_POST['search'] && $_POST['username']) {
         <?php
         if ($data->num_rows) {
             while ($result = $data->fetch_assoc()) {
-                if ($result['id'] != $login->user->id) {
+                if ($result['id'] != $currentUser->id) {
                     showUserBlock($result['id']);
                 }
             }
@@ -112,14 +113,14 @@ if ($_POST['search'] && $_POST['username']) {
 <h1>Список друзей</h1>
 <div id="friends">
     <?php
-    $data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $login->user->id);
+    $data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $currentUser->id);
     if ($data->num_rows) {
     ?>
     <h2>Входящие заявки</h2>
     <div class="section">
     <?php
         while ($result = $data->fetch_assoc()) {
-            if (!User::isSubscribers($login->user->id, $result['subscriber'])) {
+            if (!User::isSubscribers($currentUser->id, $result['subscriber'])) {
                 showUserBlock($result['subscriber']);
             }
         }
@@ -128,14 +129,14 @@ if ($_POST['search'] && $_POST['username']) {
     <?php
     }
 
-    $data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $login->user->id);
+    $data = $db->query('SELECT * FROM achi_friends WHERE subscribant = ' . $currentUser->id);
     if ($data->num_rows) {
     ?>
     <h2>Друзья</h2>
     <div class="section">
     <?php
         while ($result = $data->fetch_assoc()) {
-            if (User::isSubscribers($login->user->id, $result['subscriber'])) {
+            if (User::isSubscribers($currentUser->id, $result['subscriber'])) {
                 showUserBlock($result['subscriber']);
             }
         }
@@ -144,14 +145,14 @@ if ($_POST['search'] && $_POST['username']) {
     <?php
     }
 
-    $data = $db->query('SELECT * FROM achi_friends WHERE subscriber = ' . $login->user->id);
+    $data = $db->query('SELECT * FROM achi_friends WHERE subscriber = ' . $currentUser->id);
     if ($data->num_rows) {
     ?>
     <h2>Исходящие заявки</h2>
     <div class="section">
     <?php
         while ($result = $data->fetch_assoc()) {
-            if (!User::isSubscribers($result['subscribant'], $login->user->id)) {
+            if (!User::isSubscribers($result['subscribant'], $currentUser->id)) {
                 showUserBlock($result['subscribant']);
             }
         }

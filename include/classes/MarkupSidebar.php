@@ -4,7 +4,7 @@
 
 <?php
 function showSidebarAchievementsList($id) {
-    global $db, $login;
+    global $db, $currentUser;
 
     $query = 'SELECT * FROM `achi_achievements` WHERE `to`=' . $id . ' ORDER BY `time_sent` DESC LIMIT 0 , 3';
     $result = $db->query($query);
@@ -21,33 +21,34 @@ function showSidebarAchievementsList($id) {
 }
 
 global $login;
-if (isset($login->user)) {
+if ($login->isLoggedIn()) {
+    $currentUser = $login->getUser();
 ?>
 
     <div class="sideblock sideblock-new">
-        <a href="add.php" class="big-button">Новое достижение</a>
+        <a href="/add.php" class="big-button">Новое достижение</a>
     </div>
     <div class="sideblock sideblock-profile">
         <div class="title">
-            <?php echo $login->user->username ?>
+            <?php echo $currentUser->username ?>
         </div>
         <div class="avatar">
             <div class="level">
-                <?php echo $login->user->level ?>
+                <?php echo $currentUser->level ?>
             </div>
-            <img src="<?php echo $login->user->avatar ?>">
+            <img src="<?php echo $currentUser->avatar ?>">
         </div>
         <ul class="menu">
-            <li><a href="profile.php">Профиль</a></li>
-            <li><a href="settings.php">Настройки</a></li>
-            <li><a href="logout.php">Выйти</a></li>
+            <li><a href="/profile.php">Профиль</a></li>
+            <li><a href="/settings.php">Настройки</a></li>
+            <li><a href="/logout.php">Выйти</a></li>
         </ul>
         <div class="clearfix"></div>
         <div class="title">
             Последние достижения
         </div>
         <div class="last">
-            <?php showSidebarAchievementsList($login->user->id); ?>
+            <?php showSidebarAchievementsList($currentUser->id); ?>
         </div>
     </div>
 
@@ -63,8 +64,8 @@ if (isset($login->user)) {
             </label><br>
             <input type="submit" name="login" value="Вход">
         </form><br>
-        <a href="restore.php">Восстановление доступа</a><br>
-        <a href="register.php">Регистрация</a>
+        <a href="/restore.php">Восстановление доступа</a><br>
+        <a href="/register.php">Регистрация</a>
     </div>
 
 <?php } ?>

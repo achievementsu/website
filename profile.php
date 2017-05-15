@@ -5,12 +5,13 @@ namespace AchievementSu;
 require_once 'include/init.php';
 
 global $login;
-if (!isset($login->user)) {
+if (!$login->isLoggedIn()) {
     header('Location: index.php');
 }
+$currentUser = $login->getUser();
 
 function showAchievementsList($id) {
-    global $db, $login;
+    global $db, $currentUser;
 
     $query = 'SELECT * FROM `achi_achievements` WHERE `to`=' . $id . ' ORDER BY `time_sent` DESC LIMIT 0 , 5';
     $result = $db->query($query);
@@ -27,8 +28,8 @@ function showAchievementsList($id) {
             <div class="meta">
                 <?php
                 echo 'Достижение ' . $data['level'] . ' уровня';
-                echo ', получено ' . date('d F Y H:i:s', strtotime($data['time_sent'])+($login->user->timezone * 3600));
-                echo ' за ' . date('d F Y', strtotime($data['time_set'])+($login->user->timezone * 3600));
+                echo ', получено ' . date('d F Y H:i:s', strtotime($data['time_sent'])+($currentUser->timezone * 3600));
+                echo ' за ' . date('d F Y', strtotime($data['time_set'])+($currentUser->timezone * 3600));
                 $fromUser = new User($data['from']);
                 global $user;
                 if (!($fromUser->id == $user->id)) {
@@ -43,11 +44,11 @@ function showAchievementsList($id) {
     }
 }
 
-if ($_GET['id'] && $_GET['id'] != $login->user->id) {
+if ($_GET['id'] && $_GET['id'] != $currentUser->id) {
     $user = new User($_GET['id']);
     $title = 'Профиль ' . $user->username;
 } else {
-    $user = $login->user;
+    $user = $currentUser;
     $title = 'Мой профиль';
     $current_page = 'profile';
 }

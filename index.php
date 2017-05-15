@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
 }
 
 global $login;
-if (isset($login->user)) {
+if ($login->isLoggedIn()) {
     header('Location: feed.php');
 }
 
