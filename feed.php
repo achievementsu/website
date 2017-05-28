@@ -34,6 +34,7 @@ foreach ($feed as $achi) {
     $achiFromMe = $achiFrom == $currentUser;
     $achiTo = $achi->to == $currentUser->id ? $currentUser : new User($achi->to);
     $achiToMe = $achiTo == $currentUser;
+    $achiSelf = $achiTo->id == $achiFrom->id;
 
     if ($feedCurrentDate != $achiDate->format('d.m.Y')) {
         $feedCurrentDate = $achiDate->format('d.m.Y');
@@ -46,20 +47,23 @@ foreach ($feed as $achi) {
 
         if ($feedSectionOpened) { echo '</div>'; }
         echo '<h2>' . $feedCurrentDateText . '</h2><div class="section">';
+        $feedSectionOpened = true;
     }
 
-    echo '<div class="event"><span class="note">' . $achiDate->format('H:i') . '</span>'
+    echo '<div class="event">'
+        . '<span class="note">' . $achiDate->format('H:i') . '</span>'
         . '<img src="' . $achiTo->avatar . '" class="user-avatar user-avatar-mini"> '
         . '<span class="user-name">' . ($achiToMe ? 'Вы' : $achiTo->username) . '</span> '
         . ($achiToMe ? 'получили' : 'получил(а)') . ' достижение ' . $achi->level . ' уровня '
         . '<img src="' . $achi->image . '" class="achievement-image" style="border-color: #' . $achi->color . '"> '
-        . '<span class="achievement-name">' . $achi->name . '</span> от '
-        . '<img src="' . $achiFrom->avatar . '" class="user-avatar user-avatar-mini"> '
-        . '<span class="user-name">' . ($achiFromMe ? 'Вас' : $achiFrom->username) . '</span> '
-        . '</div>'; //.event
+        . '<span class="achievement-name">' . $achi->name . '</span>';
+        if (!$achiSelf) {
+            echo ' от <img src="' . $achiFrom->avatar . '" class="user-avatar user-avatar-mini"> '
+                . '<span class="user-name">' . ($achiFromMe ? 'Вас' : $achiFrom->username) . '</span>';
+        }
+    echo '</div>'; //.event
 }
 
-$feedSectionOpened = false;
 echo '</div>'; //.section
 
 echo '</div>'; //#feed

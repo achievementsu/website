@@ -60,7 +60,7 @@ class Achievement
     public static function getFriendsUpdatesFeed() {
         global $db, $currentUser;
         $result = array();
-        $query = 'SELECT id FROM achi_achievements WHERE `to` IN '
+        $query = 'SELECT id FROM achi_achievements WHERE `to` = ' . $currentUser->id . ' OR `to` IN '
             . '(SELECT subscribant FROM achi_friends WHERE subscriber = ' . $currentUser->id . ' AND subscribant IN '
             . '(SELECT subscriber FROM achi_friends WHERE subscribant = ' . $currentUser->id . ')) '
             . 'ORDER BY time_sent DESC LIMIT 20';
