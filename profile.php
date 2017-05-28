@@ -71,12 +71,15 @@ if (!isset($user->id)) {
         <img src="<?php echo $user->avatar; ?>">
     </div>
     <div class="profile-info">
-        <div><?php echo $user->fullname; ?>, <?php echo $user->birthday; ?></div>
+        <div>
+            <?php echo ($user->fullname ? ($user->fullname . ', ') : ''); ?>
+            <?php echo ($user->birthday == '0000-00-00') ? '' : $user->birthday; ?>
+        </div>
         <div><?php
         if ($user->description) {
             echo $user->description;
         } else {
-            echo 'Я ещё не оставил информации о себе.';
+            echo 'Пользователь пока не оставил информации о себе.';
         } ?></div>
     </div>
 </div>
