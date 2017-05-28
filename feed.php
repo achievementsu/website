@@ -52,6 +52,7 @@ foreach ($feed as $achi) {
         . '<img src="' . $achiTo->avatar . '" class="user-avatar user-avatar-mini"> '
         . '<span class="user-name">' . ($achiToMe ? 'Вы' : $achiTo->username) . '</span> '
         . ($achiToMe ? 'получили' : 'получил(а)') . ' достижение ' . $achi->level . ' уровня '
+        . '<img src="' . $achi->image . '" class="achievement-image" style="border-color: #' . $achi->color . '"> '
         . '<span class="achievement-name">' . $achi->name . '</span> от '
         . '<img src="' . $achiFrom->avatar . '" class="user-avatar user-avatar-mini"> '
         . '<span class="user-name">' . ($achiFromMe ? 'Вас' : $achiFrom->username) . '</span> '

@@ -259,22 +259,27 @@ h2 {
     height: 32px;
 }
 
-.user-name {
+#feed .event .user-name {
     color: #fff;
     font-weight: bold;
 }
 
-.achievement-name::before {
-    content: "«";
+#feed .event .achievement-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    border: 1px solid #fff;
 }
 
-.achievement-name {
+#feed .event .achievement-name::before {
+    content: "«";
+}
+#feed .event .achievement-name {
     color: #fff;
     font-style: italic;
     /* quotes: "«" "»"; */
 }
-
-.achievement-name::after {
+#feed .event .achievement-name::after {
     content: "»";
 }
 
@@ -410,10 +415,13 @@ h2 {
 
 .achievement-full > .icon {
     float: left;
-    width: 64px;
-    height: 64px;
     border: 1px solid #000;
     box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.5);
+}
+.achievement-full > .icon,
+.achievement-full > .icon > img {
+    width: 64px;
+    height: 64px;
 }
 
 .achievement-full > .info {
@@ -536,11 +544,14 @@ h2 {
 
 .sideblock-profile > .last > .achievement > .icon {
     float: left;
-    width: 32px;
-    height: 32px;
     margin-right: 6px;
     border-radius: 2px;
     border: 1px solid #000;
+}
+.sideblock-profile > .last > .achievement > .icon,
+.sideblock-profile > .last > .achievement > .icon > img {
+    width: 32px;
+    height: 32px;
 }
 
 .sideblock-profile > .last > .achievement > .title {
@@ -616,11 +627,14 @@ h2 {
 
 .popup-achievement > .icon {
     position: absolute;
-    width: 64px;
-    height: 64px;
     margin-left: 15px;
     margin-top: 14px;
     border: 1px solid #000;
+}
+.popup-achievement > .icon,
+.popup-achievement > .icon > img {
+    width: 64px;
+    height: 64px;
 }
 
 .popup-achievement > .title {
