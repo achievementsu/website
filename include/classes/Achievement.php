@@ -34,7 +34,7 @@ class Achievement
         $this->timeSent = $data['time_sent'];
         $this->timeSet = $data['time_set'];
         $this->level = $data['level'];
-        $this->image = $data['image'];
+        $this->image = 'storage/icons/' . $data['image'];
     }
 
     /**

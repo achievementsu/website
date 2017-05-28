@@ -16,7 +16,7 @@ function showAchievementsList($id) {
         ?>
         <div class="achievement-full" style="border-color: #<?php echo $achievement->color ?>;">
             <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
-                <img src="storage/icons/<?php echo $achievement->image ?>">
+                <img src="<?php echo $achievement->image ?>">
             </div>
             <div class="info">
                 <div class="name"><?php echo $achievement->name ?></div>

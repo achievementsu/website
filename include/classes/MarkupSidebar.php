@@ -8,7 +8,7 @@ function showSidebarAchievementsList($id) {
         ?>
         <div class="achievement" style="border-color: #<?php echo $achievement->color ?>;">
             <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
-                <img src="storage/icons/<?php echo $achievement->image ?>" width="32px" height="32px">
+                <img src="<?php echo $achievement->image ?>" width="32px" height="32px">
             </div>
             <div class="title"><?php echo $achievement->name ?></div>
             <div class="clearfix"></div>
