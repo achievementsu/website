@@ -65,6 +65,7 @@ Markup::pageStart();
             <input type="submit" name="save" value="Сохранить">
         </div>
     </div>
+    <?php /*
     <h2>Доступ и конфиденциальность</h2>
     <div class="section">
         <div class="note">
@@ -125,6 +126,7 @@ Markup::pageStart();
             <input type="submit" name="save" value="Сохранить">
         </div>
     </div>
+    */ ?>
 </form>
 
 <?php Markup::pageEnd(); ?>
