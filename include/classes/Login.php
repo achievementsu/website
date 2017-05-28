@@ -7,6 +7,7 @@ require_once 'User.php';
 /**
  * Class Login.
  * Определяет текущего залогиненного пользователя.
+ * @package AchievementSu
  */
 class Login
 {

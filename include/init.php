@@ -7,6 +7,7 @@ require_once './config/config.php'; // Импортируем конфигура
 require_once 'classes/User.php';
 require_once 'classes/Login.php';
 require_once 'ext/password.php'; // Работа с паролями на старых версиях PHP
+require_once 'classes/Achievement.php';
 require_once 'classes/MessageList.php';
 require_once 'classes/Markup.php';
 

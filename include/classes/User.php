@@ -5,6 +5,7 @@ namespace AchievementSu;
 /**
  * Class User.
  * Пользователь.
+ * @package AchievementSu
  */
 class User
 {
@@ -26,41 +27,42 @@ class User
 
     /**
      * Конструктор класса User по ID пользователя.
-     * @param $id
+     * @param $id int Идентификатор пользователя.
      */
     function __construct($id) {
         global $db;
 
         $query = 'SELECT * FROM achi_users WHERE id=' . $id;
-        if ($data = $db->query($query)->fetch_assoc()) {
-            $this->id                = $data['id'];
-            $this->username          = $data['username'];
-            $this->password          = $data['password'];
-            $this->email             = $data['email'];
-            $this->email_confirmed   = $data['email_confirmed'];
-            $this->registration_time = $data['registration_time'];
-            $this->fullname          = $data['fullname'];
-            $this->level             = $data['level'];
-            $this->timezone          = $data['timezone'];
-            $this->birthday          = $data['birthday'];
-            $this->description       = $data['description'];
+        $data = $db->query($query)->fetch_assoc();
+        if (!$data) { return; }
 
-            $query = 'SELECT * FROM achi_achievements WHERE `to`=' . $id;
-            if (($db->query($query)) && ($count = $db->query($query)->num_rows)) {
-                $this->achievement_count = $count;
-            } else {
-                $this->achievement_count = 0;
-            }
+        $this->id = $data['id'];
+        $this->username = $data['username'];
+        $this->password = $data['password'];
+        $this->email = $data['email'];
+        $this->email_confirmed = $data['email_confirmed'];
+        $this->registration_time = $data['registration_time'];
+        $this->fullname = $data['fullname'];
+        $this->level = $data['level'];
+        $this->timezone = $data['timezone'];
+        $this->birthday = $data['birthday'];
+        $this->description = $data['description'];
 
-            if (file_exists('storage/avatars/' . $id . '.jpg')) {
-                $this->avatar = 'storage/avatars/' . $id . '.jpg';
-            } else if (file_exists('storage/avatars/' . $id . '.png')) {
-                $this->avatar = 'storage/avatars/' . $id . '.png';
-            } else if (file_exists('storage/avatars/' . $id . '.gif')) {
-                $this->avatar = 'storage/avatars/' . $id . '.gif';
-            } else {
-                $this->avatar = 'storage/avatars/noavatar.png';
-            }
+        $query = 'SELECT * FROM achi_achievements WHERE `to`=' . $id;
+        if (($db->query($query)) && ($count = $db->query($query)->num_rows)) {
+            $this->achievement_count = $count;
+        } else {
+            $this->achievement_count = 0;
+        }
+
+        if (file_exists('storage/avatars/' . $id . '.jpg')) {
+            $this->avatar = 'storage/avatars/' . $id . '.jpg';
+        } else if (file_exists('storage/avatars/' . $id . '.png')) {
+            $this->avatar = 'storage/avatars/' . $id . '.png';
+        } else if (file_exists('storage/avatars/' . $id . '.gif')) {
+            $this->avatar = 'storage/avatars/' . $id . '.gif';
+        } else {
+            $this->avatar = 'storage/avatars/noavatar.png';
         }
     }
 

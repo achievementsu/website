@@ -4,19 +4,20 @@
 
 <?php
 function showSidebarAchievementsList($id) {
-    global $db, $currentUser;
-
-    $query = 'SELECT * FROM `achi_achievements` WHERE `to`=' . $id . ' ORDER BY `time_sent` DESC LIMIT 0 , 3';
-    $result = $db->query($query);
-
-    while ($data = $result->fetch_assoc()) {
-    ?>
-    <div class="achievement" style="border-color: #<?php echo $data['color'] ?>;">
-        <div class="icon" style="border-color: #<?php echo $data['color'] ?>;"><img src="storage/icons/<?php echo $data['image'] ?>" width="32px" height="32px"></div>
-        <div class="title"><?php echo $data['name'] ?></div>
-        <div class="clearfix"></div>
-    </div>
-    <?php
+    function printSidebarAchievementBlock($achievement) {
+        ?>
+        <div class="achievement" style="border-color: #<?php echo $achievement->color ?>;">
+            <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
+                <img src="storage/icons/<?php echo $achievement->image ?>" width="32px" height="32px">
+            </div>
+            <div class="title"><?php echo $achievement->name ?></div>
+            <div class="clearfix"></div>
+        </div>
+        <?php
+    }
+    $achievements = Achievement::getUserAchievementsList($id, 3);
+    foreach ($achievements as $achievement) {
+        printSidebarAchievementBlock($achievement);
     }
 }
 

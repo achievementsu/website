@@ -11,36 +11,36 @@ if (!$login->isLoggedIn()) {
 $currentUser = $login->getUser();
 
 function showAchievementsList($id) {
-    global $db, $currentUser;
-
-    $query = 'SELECT * FROM `achi_achievements` WHERE `to`=' . $id . ' ORDER BY `time_sent` DESC LIMIT 0 , 5';
-    $result = $db->query($query);
-
-    while ($data = $result->fetch_assoc()) {
-    ?>
-    <div class="achievement-full" style="border-color: #<?php echo $data['color'] ?>;">
-        <div class="icon" style="border-color: #<?php echo $data['color'] ?>;">
-            <img src="storage/icons/<?php echo $data['image'] ?>">
-        </div>
-        <div class="info">
-            <div class="name"><?php echo $data['name'] ?></div>
-            <div class="description"><?php echo $data['description'] ?></div>
-            <div class="meta">
-                <?php
-                echo 'Достижение ' . $data['level'] . ' уровня';
-                echo ', получено ' . date('d F Y H:i:s', strtotime($data['time_sent'])+($currentUser->timezone * 3600));
-                echo ' за ' . date('d F Y', strtotime($data['time_set'])+($currentUser->timezone * 3600));
-                $fromUser = new User($data['from']);
-                global $user;
-                if (!($fromUser->id == $user->id)) {
-                    echo ' от <a href="profile.php?id=' . $fromUser->id . '">' . $fromUser->username . '</a>';
-                }
-                echo '.';
-                ?>
+    function printAchievementBlock($achievement) {
+        global $currentUser;
+        ?>
+        <div class="achievement-full" style="border-color: #<?php echo $achievement->color ?>;">
+            <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
+                <img src="storage/icons/<?php echo $achievement->image ?>">
+            </div>
+            <div class="info">
+                <div class="name"><?php echo $achievement->name ?></div>
+                <div class="description"><?php echo $achievement->description ?></div>
+                <div class="meta">
+                    <?php
+                    echo 'Достижение ' . $achievement->level . ' уровня';
+                    //echo ', получено ' . date('d F Y H:i:s', strtotime($achievement->time_sent)+($currentUser->timezone * 3600));
+                    echo ' за ' . date('d F Y', strtotime($achievement->time_set)+($currentUser->timezone * 3600));
+                    $fromUser = new User($achievement->from);
+                    global $user;
+                    if (!($fromUser->id == $user->id)) {
+                        echo ' от <a href="profile.php?id=' . $fromUser->id . '">' . $fromUser->username . '</a>';
+                    }
+                    echo '.';
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-    <?php
+        <?php
+    }
+    $achievements = Achievement::getUserAchievementsList($id, 5);
+    foreach ($achievements as $achievement) {
+        printAchievementBlock($achievement);
     }
 }
 

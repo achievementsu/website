@@ -5,6 +5,7 @@ namespace AchievementSu;
 /**
  * Class Markup.
  * Класс, отвечающий за общую разметку страниц.
+ * @package AchievementSu
  */
 class Markup
 {
