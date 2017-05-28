@@ -254,6 +254,10 @@ h2 {
     border-radius: 2px;
     box-shadow: 0 0 1px 0 #fff;
 }
+.user-avatar.user-avatar-mini {
+    width: 32px;
+    height: 32px;
+}
 
 .user-name {
     color: #fff;

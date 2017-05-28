@@ -2,6 +2,8 @@
 
 namespace AchievementSu;
 
+require_once 'User.php';
+
 /**
  * Class Achievement.
  * Достижение.
@@ -29,8 +31,8 @@ class Achievement
         $this->name = $data['name'];
         $this->description = $data['description'];
         $this->color = $data['color'];
-        $this->timeSent = $data['timeSent'];
-        $this->timeSet = $data['timeSet'];
+        $this->timeSent = $data['time_sent'];
+        $this->timeSet = $data['time_set'];
         $this->level = $data['level'];
         $this->image = $data['image'];
     }
@@ -51,6 +53,22 @@ class Achievement
         while ($a = $data->fetch_assoc()) {
             array_push($result, new Achievement($a['id']));
         }
+        unset($a);
+        return $result;
+    }
+
+    public static function getFriendsUpdatesFeed() {
+        global $db, $currentUser;
+        $result = array();
+        $query = 'SELECT id FROM achi_achievements WHERE `to` IN '
+            . '(SELECT subscribant FROM achi_friends WHERE subscriber = ' . $currentUser->id . ' AND subscribant IN '
+            . '(SELECT subscriber FROM achi_friends WHERE subscribant = ' . $currentUser->id . ')) '
+            . 'ORDER BY time_sent DESC LIMIT 20';
+        $ids = $db->query($query);
+        while ($a = $ids->fetch_assoc()) {
+            array_push($result, new Achievement($a['id']));
+        }
+        unset($a);
         return $result;
     }
 }

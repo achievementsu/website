@@ -201,6 +201,19 @@ class User
         }
         return false;
     }
+
+    /**
+     * Возвращает массив друзей пользователя.
+     * @param $id int Идентификатор пользователя
+     * @return array Массив идентификаторов друзей.
+     */
+    public static function getFriendsList($id) {
+        global $db;
+        $query = 'SELECT subscribant FROM achi_friends WHERE subscriber = ' . $id
+            . ' AND subscribant IN (SELECT subscriber FROM achi_friends WHERE subscribant = ' . $id . ')';
+        $data = $db->query($query)->fetch_all(MYSQLI_NUM);
+        return $data;
+    }
 }
 
 ?>

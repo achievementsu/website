@@ -8,47 +8,58 @@ global $login;
 if (!$login->isLoggedIn()) {
     header('Location: index.php');
 }
+$currentUser = $login->getUser();
+$feed = Achievement::getFriendsUpdatesFeed();
 
 $title = 'Обновления';
 $current_page = 'feed';
 $showSidebar = true;
 
 Markup::pageStart();
+echo '<h1>Лента обновлений</h1><div id="feed">';
 
-?>
+// Даты для сравнений
+$date_today = new \DateTime('today');
+$date_today = $date_today->format('d.m.Y');
+$date_yesterday = new \DateTime('yesterday');
+$date_yesterday = $date_yesterday->format('d.m.Y');
 
-<h1>Лента обновлений</h1>
-<div id="feed">
-    <h2>Сегодня</h2>
-    <div class="section">
-        <div class="event">
-            <span class="note">10:42</span>
-            <img src="storage/avatars/diamond00744.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Вы</span> получили достижение 7 уровня <span class="achievement-name">Счастливчик</span> от <img src="storage/avatars/lirrick.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Lirrick</span>
-        </div>
-        <div class="event">
-            <span class="note">9:29</span>
-            <img src="storage/avatars/lirrick.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Lirrick</span> получил достижение 5 уровня <span class="achievement-name">Зомбикиллер</span> от <img src="storage/avatars/diamond00744.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Вас</span>
-        </div>
-        <div class="event">
-            <span class="note">9:18</span>
-            <img src="storage/avatars/tippa44007.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">tippa44007</span> получил достижение 10 уровня <span class="achievement-name">ДуровЛох</span>
-        </div>
-    </div>
-    <h2>Вчера</h2>
-    <div class="section">
-        <div class="event">
-            <span class="note">23:19</span>
-            <img src="storage/avatars/diamond00744.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Вы</span> получили достижение 8 уровня <span class="achievement-name">За верность</span> от <img src="storage/avatars/tippa44007.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">tippa44007</span>
-        </div>
-        <div class="event">
-            <span class="note">16:54</span>
-            <img src="storage/avatars/diamond00744.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">Вы</span> подружились с <img src="storage/avatars/tippa44007.jpg" class="user-avatar" width="32px" height="32px"> <span class="user-name">tippa44007</span>
-        </div>
-    </div>
-</div>
+// Переменная для даты текущего достижения
+$feedCurrentDate = null;
+$feedSectionOpened = false;
 
-<?php
+foreach ($feed as $achi) {
+    $achiDate = new \DateTime($achi->timeSent);
+    $achiFrom = $achi->from == $currentUser->id ? $currentUser : new User($achi->from);
+    $achiFromMe = $achiFrom == $currentUser;
+    $achiTo = $achi->to == $currentUser->id ? $currentUser : new User($achi->to);
+    $achiToMe = $achiTo == $currentUser;
 
+    if ($feedCurrentDate != $achiDate->format('d.m.Y')) {
+        $feedCurrentDate = $achiDate->format('d.m.Y');
+        $feedCurrentDateText = $feedCurrentDate;
+        if ($feedCurrentDate == $date_today) {
+            $feedCurrentDateText = 'Сегодня';
+        } elseif ($feedCurrentDate == $date_yesterday) {
+            $feedCurrentDateText = 'Вчера';
+        }
+
+        if ($feedSectionOpened) { echo '</div>'; }
+        echo '<h2>' . $feedCurrentDateText . '</h2><div class="section">';
+    }
+
+    echo '<div class="event"><span class="note">' . $achiDate->format('H:i') . '</span>'
+        . '<img src="' . $achiTo->avatar . '" class="user-avatar user-avatar-mini"> '
+        . '<span class="user-name">' . ($achiToMe ? 'Вы' : $achiTo->username) . '</span> '
+        . ($achiToMe ? 'получили' : 'получил(а)') . ' достижение ' . $achi->level . ' уровня '
+        . '<span class="achievement-name">' . $achi->name . '</span> от '
+        . '<img src="' . $achiFrom->avatar . '" class="user-avatar user-avatar-mini"> '
+        . '<span class="user-name">' . ($achiFromMe ? 'Вас' : $achiFrom->username) . '</span> '
+        . '</div>'; //.event
+}
+
+$feedSectionOpened = false;
+echo '</div>'; //.section
+
+echo '</div>'; //#feed
 Markup::pageEnd();
-
-?>
