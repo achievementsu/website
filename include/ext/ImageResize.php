@@ -1,4 +1,8 @@
 <?php
+/*
+ * php-image-resize by EventViva
+ * https://github.com/eventviva/php-image-resize
+ */
 
 namespace Eventviva;
 
