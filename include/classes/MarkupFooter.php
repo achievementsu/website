@@ -41,7 +41,7 @@ namespace AchievementSu;
     </div>
 </div>
 <?php /* <div class="popup-achievement" style="border-color: #0d0;">
-    <div class="icon" style="--box-shadow-color: #0d0;"><img src="storage/icons/randomcode.jpg"></div>
+    <img src="storage/icons/randomcode.jpg" class="icon" style="--box-shadow-color: #0d0;">
     <div class="title">Получено достижение</div>
     <div class="text">Делом, наконец, занялся</div>
     <div class="comment">от tippa44007</div>

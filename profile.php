@@ -35,9 +35,8 @@ function showAchievementsList($id) {
         global $currentUser;
         ?>
         <div class="achievement-full" style="border-color: #<?php echo $achievement->color ?>;">
-            <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
-                <img src="<?php echo $achievement->image ?>">
-            </div>
+            <img src="<?php echo $achievement->image ?>" class="icon"
+                 style="border-color: #<?php echo $achievement->color ?>;">
             <div class="info">
                 <div class="name"><?php echo $achievement->name ?></div>
                 <div class="description"><?php echo $achievement->description ?></div>

@@ -440,10 +440,8 @@ h2 {
 .achievement-full > .icon {
     float: left;
     border: 1px solid #000;
+    border-radius: 4px;
     box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.5);
-}
-.achievement-full > .icon,
-.achievement-full > .icon > img {
     width: 64px;
     height: 64px;
 }
@@ -571,9 +569,6 @@ h2 {
     margin-right: 6px;
     border-radius: 2px;
     border: 1px solid #000;
-}
-.sideblock-profile > .last > .achievement > .icon,
-.sideblock-profile > .last > .achievement > .icon > img {
     width: 32px;
     height: 32px;
 }
@@ -654,9 +649,7 @@ h2 {
     margin-left: 15px;
     margin-top: 14px;
     border: 1px solid #000;
-}
-.popup-achievement > .icon,
-.popup-achievement > .icon > img {
+    border-radius: 4px;
     width: 64px;
     height: 64px;
 }

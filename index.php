@@ -77,9 +77,7 @@ Markup::pageStart();
 <h2>Ранняя стадия</h2>
 <div class="section">
     <div class="achievement-full" style="border-color: #E94E09;">
-        <div class="icon" style="border-color: #E94E09;">
-            <img src="resources/images/icons/alpha.jpg">
-        </div>
+        <img src="resources/images/icons/alpha.jpg" class="icon" style="border-color: #E94E09;">
         <div class="info">
             <div class="name">Альфа-тестирование</div>
             <div class="description">Ничего не трогать! <b>¯\_(ツ)_/¯</b></div>

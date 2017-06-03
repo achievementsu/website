@@ -30,9 +30,8 @@ function showSidebarAchievementsList($id) {
     function printSidebarAchievementBlock($achievement) {
         ?>
         <div class="achievement" style="border-color: #<?php echo $achievement->color ?>;">
-            <div class="icon" style="border-color: #<?php echo $achievement->color ?>;">
-                <img src="<?php echo $achievement->image ?>" width="32px" height="32px">
-            </div>
+            <img src="<?php echo $achievement->image ?>" class="icon"
+                 style="border-color: #<?php echo $achievement->color ?>; width: 32px; height: 32px;">
             <div class="title"><?php echo $achievement->name ?></div>
             <div class="clearfix"></div>
         </div>
