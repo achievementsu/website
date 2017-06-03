@@ -178,6 +178,7 @@ if ($_POST['search'] && $_POST['username']) {
         }
     ?>
     </div>
+</div>
     <?php
     }
 }

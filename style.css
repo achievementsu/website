@@ -115,6 +115,9 @@ fieldset {
 #wrapper {
     background: #333 url("resources/images/background.jpg") repeat fixed;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* --- --- --- Header part --- --- --- */
@@ -176,7 +179,7 @@ fieldset {
 /* --- --- --- Content part --- --- --- */
 
 #content {
-
+    flex: 1;
 }
 
 #content-wrapper {

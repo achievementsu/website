@@ -45,5 +45,12 @@ if ($db->connect_errno) {
     exit();
 }
 
+global $_POST;
+if ($_POST) {
+    foreach ($_POST as $key => $value) {
+        $_POST[$key] = htmlspecialchars($value, ENT_QUOTES);
+    }
+}
+
 $login = new Login();
 $listMessages = new MessageList();

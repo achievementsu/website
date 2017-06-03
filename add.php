@@ -153,6 +153,7 @@ function sendAchievement() {
     }
 
     $listMessages->addSuccess('Достижение успешно отправлено!');
+    $_POST = array();
     return true;
 }
 
@@ -160,7 +161,7 @@ function showSendList() {
     global $db, $currentUser;
     echo '<select name="to" required>';
     echo '<option value="' . $currentUser->id . '"';
-    if (!$_GET['id']) {
+    if (!$_GET['id'] && !$_POST['to']) {
         echo ' selected';
     }
     echo '>' . $currentUser->username . "</option>\n";
@@ -172,7 +173,7 @@ function showSendList() {
     $result = $db->query($query);
     while ($data = $result->fetch_assoc()) {
         echo '<option value="' . $data['id'] . '"';
-        if ($_GET['id'] == $data['id']) {
+        if (!$_POST['to'] && $_GET['id'] == $data['id'] || $_POST['to'] == $data['id']) {
             echo ' selected';
         }
         echo '>' . $data['username'] . "</option>";
