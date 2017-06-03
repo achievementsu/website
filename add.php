@@ -265,6 +265,7 @@ Markup::pageStart();
         <div class="actions">
             <input type="submit" name="send" value="Отправить">
         </div>
+    </div>
 </form>
 
 <?php Markup::pageEnd(); ?>
